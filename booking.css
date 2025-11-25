@@ -1,0 +1,1396 @@
+/* ===================================
+   BOOKING PAGE SPECIFIC STYLES
+   =================================== 
+   Note: This file should be loaded AFTER style.css
+   to inherit CSS variables and base styles
+   =================================== */
+
+/* ===================================
+   BOOKING MODAL STYLES
+   =================================== */
+.booking-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease;
+}
+
+.booking-modal-container {
+    background: var(--white);
+    border-radius: 20px;
+    max-width: 1400px;
+    width: 100%;
+    max-height: 95vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideUp 0.4s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.booking-modal-close {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background: var(--white);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--dark-color);
+    transition: var(--transition);
+    box-shadow: var(--shadow-lg);
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.booking-modal-close:hover {
+    background: var(--accent-color);
+    color: var(--white);
+    transform: rotate(90deg);
+}
+
+.booking-modal-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+    padding: 3rem;
+    text-align: center;
+    border-radius: 20px 20px 0 0;
+}
+
+.booking-modal-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.booking-modal-header h2 i {
+    margin-right: 1rem;
+}
+
+.booking-modal-header p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+}
+
+.booking-modal-body {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.booking-form-section {
+    overflow-y: auto;
+    max-height: calc(95vh - 250px);
+    padding-right: 1rem;
+}
+
+.booking-form-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.booking-form-section::-webkit-scrollbar-track {
+    background: var(--light-color);
+    border-radius: 10px;
+}
+
+.booking-form-section::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+.form-section {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--light-color);
+}
+
+.form-section:last-child {
+    border-bottom: none;
+}
+
+.form-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+}
+
+.form-section-title i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.form-section-title h3 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.package-selection-modal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.package-option-modal {
+    border: 3px solid var(--light-color);
+    border-radius: 15px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    display: block;
+}
+
+.package-option-modal input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.package-option-modal:hover {
+    border-color: var(--secondary-color);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.package-option-modal input[type="radio"]:checked + .package-content-modal {
+    background: var(--light-color);
+}
+
+.package-option-modal input[type="radio"]:checked ~ .package-content-modal,
+.package-option-modal:has(input[type="radio"]:checked) {
+    border-color: var(--primary-color);
+    background: var(--light-color);
+}
+
+.package-content-modal h4 {
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.package-content-modal p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.day-selection-modal {
+    background: var(--light-color);
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 1.5rem;
+}
+
+.day-selection-modal h4 {
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.day-selection-modal h4 i {
+    color: var(--accent-color);
+}
+
+.activity-types-modal {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.activity-card-modal {
+    background: var(--white);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    display: block;
+}
+
+.activity-card-modal input[type="radio"] {
+    display: none;
+}
+
+.activity-card-modal:hover {
+    border-color: var(--secondary-color);
+    transform: translateY(-3px);
+}
+
+.activity-card-modal:has(input[type="radio"]:checked) {
+    border-color: var(--primary-color);
+    background: rgba(45, 122, 79, 0.1);
+}
+
+.activity-card-modal i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.activity-card-modal h5 {
+    color: var(--dark-color);
+    margin-bottom: 0.3rem;
+    font-size: 1rem;
+}
+
+.activity-card-modal .price {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.activity-card-modal p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin: 0.3rem 0;
+    line-height: 1.4;
+}
+
+.addon-options-modal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.addon-card-modal {
+    background: var(--light-color);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    transition: var(--transition);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.addon-card-modal input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.addon-card-modal:hover {
+    border-color: var(--secondary-color);
+}
+
+.addon-card-modal:has(input[type="checkbox"]:checked) {
+    border-color: var(--primary-color);
+    background: rgba(45, 122, 79, 0.1);
+}
+
+.addon-info-modal h5 {
+    color: var(--dark-color);
+    margin-bottom: 0.2rem;
+    font-size: 0.95rem;
+}
+
+.addon-info-modal p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin: 0.3rem 0;
+    line-height: 1.4;
+}
+
+.addon-price {
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.payment-methods-modal {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.payment-method-modal {
+    border: 2px solid var(--light-color);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    display: block;
+}
+
+.payment-method-modal input[type="radio"] {
+    display: none;
+}
+
+.payment-method-modal:hover {
+    border-color: var(--secondary-color);
+}
+
+.payment-method-modal:has(input[type="radio"]:checked) {
+    border-color: var(--primary-color);
+    background: var(--light-color);
+}
+
+.payment-method-modal i {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.payment-method-modal span {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.payment-method-modal p {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 0.3rem;
+    margin-bottom: 0;
+}
+
+.price-summary-modal {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+.price-summary-modal h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.price-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.price-line:last-child {
+    border-bottom: none;
+}
+
+.price-total {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.price-total .price-line {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.discount-code-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.discount-input-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.discount-input-group input {
+    flex: 1;
+    padding: 0.7rem;
+    border: none;
+    border-radius: 8px;
+}
+
+.discount-input-group button {
+    padding: 0.7rem 1rem;
+    background: var(--accent-color);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.discount-input-group button:hover {
+    background: #e09450;
+}
+
+.discount-applied {
+    background: rgba(76, 175, 80, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* ===================================
+   LOADING OVERLAY
+   =================================== */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.loading-spinner {
+    width: 80px;
+    height: 80px;
+    border: 8px solid rgba(255, 255, 255, 0.2);
+    border-top: 8px solid var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.loading-text {
+    color: var(--white);
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.loading-subtext {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    animation: pulse 1.5s ease-in-out infinite;
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* ===================================
+   SUCCESS MODAL
+   =================================== */
+.success-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 100001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+    overflow-y: auto;
+}
+
+/* Custom Scrollbar for Modal Overlay */
+.success-modal-overlay::-webkit-scrollbar {
+    width: 8px;
+}
+
+.success-modal-overlay::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.success-modal-overlay::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 4px;
+}
+
+.success-modal-overlay::-webkit-scrollbar-thumb:hover {
+    background: #e09450;
+}
+
+/* Firefox scrollbar for overlay */
+.success-modal-overlay {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) rgba(0, 0, 0, 0.3);
+}
+
+.success-modal-content {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    text-align: center;
+    animation: slideUp 0.4s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+/* Custom Scrollbar for Success Modal */
+.success-modal-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.success-modal-content::-webkit-scrollbar-track {
+    background: var(--light-color);
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.success-modal-content::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+    transition: var(--transition);
+}
+
+.success-modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Firefox scrollbar */
+.success-modal-content {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--light-color);
+}
+
+.success-icon {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #4caf50, #45a049);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    animation: successPop 0.5s ease;
+}
+
+.success-icon i {
+    font-size: 3.5rem;
+    color: var(--white);
+}
+
+@keyframes successPop {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.success-modal-content h2 {
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.success-modal-content .success-message {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.success-details {
+    background: var(--light-color);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.success-details h3 {
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.success-detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.success-detail-item:last-child {
+    border-bottom: none;
+}
+
+.success-detail-label {
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.success-detail-value {
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.success-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.success-actions .btn {
+    min-width: 150px;
+}
+
+/* ===================================
+   RESPONSIVE STYLES
+   =================================== */
+
+/* Modal Responsive */
+@media (max-width: 1200px) {
+    .booking-modal-body {
+        grid-template-columns: 1fr;
+    }
+
+    .price-summary-modal {
+        position: static;
+        margin-top: 2rem;
+    }
+
+    .booking-form-section {
+        max-height: none;
+        padding-right: 0;
+    }
+
+    .booking-modal-container {
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 968px) {
+    .booking-modal-container {
+        max-width: 98%;
+        max-height: 98vh;
+        border-radius: 15px;
+    }
+
+    .booking-modal-header {
+        padding: 2rem 1.5rem;
+    }
+
+    .booking-modal-header h2 {
+        font-size: 2rem;
+    }
+
+    .booking-modal-header p {
+        font-size: 1rem;
+    }
+
+    .booking-modal-body {
+        padding: 1.5rem;
+    }
+
+    .form-section {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .form-section-title h3 {
+        font-size: 1.3rem;
+    }
+
+    .package-selection-modal {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .package-option-modal {
+        padding: 1.2rem;
+    }
+
+    .day-selection-modal {
+        padding: 1.2rem;
+    }
+
+    .activity-types-modal {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    .activity-card-modal {
+        padding: 1.2rem;
+    }
+
+    .addon-options-modal {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    .addon-card-modal {
+        padding: 1rem;
+    }
+
+    .price-summary-modal {
+        padding: 1.5rem;
+    }
+
+    .price-summary-modal h3 {
+        font-size: 1.3rem;
+    }
+
+    .success-modal-overlay {
+        padding: 15px;
+    }
+
+    .success-modal-content {
+        padding: 2.5rem 2rem;
+        max-width: 90%;
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+
+    .success-icon {
+        width: 90px;
+        height: 90px;
+    }
+
+    .success-icon i {
+        font-size: 3rem;
+    }
+
+    .success-modal-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .success-message {
+        font-size: 1rem;
+    }
+
+    .success-details {
+        padding: 1.2rem;
+    }
+
+    .success-details h3 {
+        font-size: 1.1rem;
+    }
+
+    .success-detail-item {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .booking-modal-overlay {
+        padding: 10px;
+    }
+
+    .booking-modal-close {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .booking-modal-container {
+        max-width: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+    }
+
+    .booking-modal-header {
+        padding: 1.5rem 1rem;
+        border-radius: 0;
+    }
+
+    .booking-modal-header h2 {
+        font-size: 1.6rem;
+    }
+
+    .booking-modal-header h2 i {
+        font-size: 1.4rem;
+        margin-right: 0.5rem;
+    }
+
+    .booking-modal-header p {
+        font-size: 0.95rem;
+    }
+
+    .booking-modal-body {
+        padding: 1rem;
+    }
+
+    .booking-modal-container::-webkit-scrollbar,
+    .booking-form-section::-webkit-scrollbar,
+    .success-modal-content::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .booking-modal-container::-webkit-scrollbar-track,
+    .booking-form-section::-webkit-scrollbar-track,
+    .success-modal-content::-webkit-scrollbar-track {
+        background: var(--light-color);
+    }
+
+    .booking-modal-container::-webkit-scrollbar-thumb,
+    .booking-form-section::-webkit-scrollbar-thumb,
+    .success-modal-content::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 3px;
+    }
+
+    .form-section {
+        margin-bottom: 1.2rem;
+        padding-bottom: 1.2rem;
+    }
+
+    .form-section-title {
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .form-section-title i {
+        font-size: 1.2rem;
+    }
+
+    .form-section-title h3 {
+        font-size: 1.2rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .form-group label {
+        font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.9rem;
+        font-size: 1rem;
+    }
+
+    .package-selection-modal {
+        grid-template-columns: 1fr;
+    }
+
+    .package-content-modal h4 {
+        font-size: 1.1rem;
+    }
+
+    .package-content-modal p {
+        font-size: 0.9rem;
+    }
+
+    .day-selection-modal h4 {
+        font-size: 1rem;
+    }
+
+    .activity-types-modal {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-card-modal i {
+        font-size: 1.8rem;
+    }
+
+    .activity-card-modal h5 {
+        font-size: 0.95rem;
+    }
+
+    .addon-options-modal {
+        grid-template-columns: 1fr;
+    }
+
+    .addon-info-modal h5 {
+        font-size: 0.9rem;
+    }
+
+    .addon-price {
+        font-size: 0.85rem;
+    }
+
+    .payment-methods-modal {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+
+    .payment-method-modal {
+        padding: 1rem 0.8rem;
+    }
+
+    .payment-method-modal i {
+        font-size: 1.5rem;
+    }
+
+    .payment-method-modal span {
+        font-size: 0.85rem;
+    }
+
+    .price-summary-modal {
+        padding: 1.2rem;
+    }
+
+    .price-summary-modal h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .price-line {
+        padding: 0.6rem 0;
+        font-size: 0.95rem;
+    }
+
+    .price-total .price-line {
+        font-size: 1.1rem;
+    }
+
+    .discount-code-section {
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+
+    .discount-input-group {
+        flex-direction: column;
+    }
+
+    .discount-input-group input {
+        width: 100%;
+    }
+
+    .discount-input-group button {
+        width: 100%;
+        padding: 0.8rem;
+    }
+
+    .btn-large {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+
+    .loading-spinner {
+        width: 60px;
+        height: 60px;
+        border-width: 6px;
+    }
+
+    .loading-text {
+        font-size: 1.2rem;
+        margin-top: 1.5rem;
+    }
+
+    .loading-subtext {
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+    }
+
+    .success-modal-overlay {
+        padding: 10px;
+    }
+
+    .success-modal-content {
+        padding: 2rem 1.5rem;
+        max-width: 95%;
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+
+    .success-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .success-icon i {
+        font-size: 2.5rem;
+    }
+
+    .success-modal-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .success-message {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .success-details {
+        padding: 1rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .success-details h3 {
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .success-details ul {
+        padding-left: 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .success-detail-item {
+        font-size: 0.9rem;
+        padding: 0.4rem 0;
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    .success-detail-label {
+        font-size: 0.85rem;
+    }
+
+    .success-detail-value {
+        font-size: 0.9rem;
+        text-align: left;
+    }
+
+    .success-actions {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .success-actions .btn {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .booking-modal-container,
+    .success-modal-content {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+    }
+
+    .btn:focus,
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus,
+    .package-option-modal:focus,
+    .activity-card-modal:focus,
+    .addon-card-modal:focus,
+    .payment-method-modal:focus {
+        outline: 3px solid var(--accent-color);
+        outline-offset: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .booking-modal-overlay {
+        padding: 0;
+    }
+
+    .booking-modal-close {
+        top: 8px;
+        right: 8px;
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    .booking-modal-header {
+        padding: 1.2rem 0.8rem;
+    }
+
+    .booking-modal-header h2 {
+        font-size: 1.3rem;
+        line-height: 1.3;
+    }
+
+    .booking-modal-header p {
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+    }
+
+    .booking-modal-body {
+        padding: 0.8rem;
+    }
+
+    .form-section {
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .form-section-title h3 {
+        font-size: 1.1rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.8rem;
+        font-size: 0.95rem;
+    }
+
+    .package-option-modal {
+        padding: 1rem;
+    }
+
+    .package-content-modal h4 {
+        font-size: 1rem;
+    }
+
+    .day-selection-modal {
+        padding: 1rem;
+    }
+
+    .activity-card-modal {
+        padding: 1rem;
+    }
+
+    .activity-card-modal i {
+        font-size: 1.5rem;
+    }
+
+    .addon-card-modal {
+        padding: 0.8rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .addon-header {
+        width: 100%;
+    }
+
+    .payment-methods-modal {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-method-modal {
+        padding: 1rem;
+    }
+
+    .price-summary-modal {
+        padding: 1rem;
+    }
+
+    .price-summary-modal h3 {
+        font-size: 1.1rem;
+    }
+
+    .price-line {
+        font-size: 0.9rem;
+        padding: 0.5rem 0;
+    }
+
+    .price-total .price-line {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 0.9rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .btn-large {
+        padding: 1rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border-width: 5px;
+    }
+
+    .loading-text {
+        font-size: 1rem;
+        margin-top: 1.2rem;
+        padding: 0 15px;
+    }
+
+    .loading-subtext {
+        font-size: 0.85rem;
+        padding: 0 15px;
+    }
+
+    .success-modal-overlay {
+        padding: 0;
+    }
+
+    .success-modal-content {
+        padding: 1.5rem 1rem;
+        max-width: 100%;
+        border-radius: 0;
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+
+    .success-modal-content::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .success-icon {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 1rem;
+    }
+
+    .success-icon i {
+        font-size: 2rem;
+    }
+
+    .success-modal-content h2 {
+        font-size: 1.3rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .success-message {
+        font-size: 0.9rem;
+        margin-bottom: 1.2rem;
+        line-height: 1.5;
+    }
+
+    .success-details {
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .success-details h3 {
+        font-size: 0.95rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .success-details p {
+        font-size: 0.85rem;
+    }
+
+    .success-details ul {
+        padding-left: 1.2rem;
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+    }
+
+    .success-details li {
+        margin-bottom: 0.3rem;
+    }
+
+    .success-detail-item {
+        font-size: 0.85rem;
+        padding: 0.3rem 0;
+    }
+
+    .success-detail-label {
+        font-size: 0.8rem;
+    }
+
+    .success-detail-value {
+        font-size: 0.85rem;
+    }
+
+    .success-actions .btn {
+        padding: 0.9rem;
+        font-size: 0.95rem;
+    }
+
+    /* Social sharing section responsive */
+    .success-modal-content > div[style*="background: linear-gradient"] {
+        padding: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .success-modal-content > div[style*="background: linear-gradient"] p {
+        font-size: 0.85rem !important;
+    }
+
+    .success-modal-content > div[style*="background: linear-gradient"] > div {
+        margin-top: 0.8rem !important;
+        gap: 0.8rem !important;
+    }
+
+    .success-modal-content > div[style*="background: linear-gradient"] a {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 1.2rem !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .booking-modal-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .form-section-title h3 {
+        font-size: 1rem;
+    }
+
+    .success-modal-content h2 {
+        font-size: 1.1rem;
+    }
+
+    .success-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .success-icon i {
+        font-size: 1.8rem;
+    }
+}
+
+/* Landscape Orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+    .booking-modal-container {
+        max-height: 95vh;
+    }
+
+    .booking-modal-header {
+        padding: 1rem;
+    }
+
+    .booking-modal-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .booking-modal-body {
+        padding: 0.8rem;
+        max-height: calc(95vh - 150px);
+        overflow-y: auto;
+    }
+
+    .success-modal-content {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .loading-text {
+        font-size: 1rem;
+    }
+
+    .loading-subtext {
+        font-size: 0.85rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .booking-modal-overlay,
+    .success-modal-overlay,
+    .loading-overlay {
+        display: none !important;
+    }
+}
+

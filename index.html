@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Highway District Eco-Trail | 3-Day Tour Package</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-mountain"></i>
+                <span>Eco-Trail</span>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#day1" class="nav-link">Day 1</a></li>
+                <li><a href="#day2" class="nav-link">Day 2</a></li>
+                <li><a href="#day3" class="nav-link">Day 3</a></li>
+                <li><a href="#sustainability" class="nav-link">Sustainability</a></li>
+                <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                <li><a href="booking.html" class="nav-link btn-nav">Book Now</a></li>
+                <li id="authNav">
+                    <a href="login.html" class="nav-link" id="loginLink">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    <a href="#" class="nav-link" id="logoutLink" style="display: none;" onclick="handleLogout(event)">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                    <span class="nav-link user-greeting" id="userGreeting" style="display: none; color: var(--primary-color); font-weight: 600;">
+                        <i class="fas fa-user-circle"></i> <span id="userName"></span>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">North Highway District Eco-Trail Tour Package</h1>
+            <p class="hero-subtitle">An Immersive 3-Day Eco-Tour Experience</p>
+            <p class="hero-description">Welcome to the North Highway District Eco-Trail, an immersive 3-day eco-tour designed for those who seek to connect with the natural beauty, rich culture, and unique man-made landmarks of Malaybalay City, Bukidnon. Whether you're drawn to stunning waterfalls, fascinated by local traditions, or seeking the charm of scenic ridge walks, the Eco-Trail offers a customized adventure like no other.</p>
+            <p class="hero-description" style="margin-top: 1rem; font-size: 1.1rem;">Choose from Natural, Cultural, or Man-made attractions each day, and build the perfect experience tailored to your interests. With a focus on sustainability, local community engagement, and memorable experiences, the Eco-Trail is your gateway to discovering the hidden gems of the North Highway District.</p>
+            <div class="hero-buttons">
+                <a href="booking.html" class="btn btn-primary">Book Your Adventure</a>
+                <a href="#day1" class="btn btn-secondary">Explore Itinerary</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Quick Info Section -->
+    <section class="quick-info">
+        <div class="container">
+            <div class="section-header centered" style="margin-bottom: 2rem;">
+                <h2>Tour Package Overview</h2>
+                <p class="section-subtitle">Duration: 3 Days | Type: Modular, Customized Tour Package</p>
+            </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <i class="fas fa-water"></i>
+                    <h3>Natural Attractions</h3>
+                    <p>Waterfalls, rivers, forest treks, and eco-camping</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-hands"></i>
+                    <h3>Cultural Attractions</h3>
+                    <p>Local community storytelling, craft demos, heritage food tastings, and farm visits</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-mountain"></i>
+                    <h3>Man-made Attractions</h3>
+                    <p>Ridge walks, café hopping, scenic views, and sunset reflections</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Sustainability Focus</h3>
+                    <p>Eco-friendly practices and local community engagement</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Day 1 Section -->
+    <section id="day1" class="day-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Day 1</span>
+                <h2>Water & Forest Awakening (Natural Attractions)</h2>
+                <p class="section-subtitle">Immerse yourself in natural attractions</p>
+            </div>
+            <div class="day-content">
+                <div class="day-image-grid">
+                    <div class="image-placeholder main-image">
+                        <i class="fas fa-water"></i>
+                        <span>Manalog Falls</span>
+                    </div>
+                    <div class="image-placeholder">
+                        <i class="fas fa-tree"></i>
+                        <span>Tagoloan Headwaters</span>
+                    </div>
+                    <div class="image-placeholder">
+                        <i class="fas fa-campground"></i>
+                        <span>Eco-Camp</span>
+                    </div>
+                </div>
+                <div class="day-details">
+                    <div class="itinerary-block">
+                        <h3><i class="fas fa-sun"></i> Morning Activities</h3>
+                        <div class="activity-detail">
+                            <h4><i class="fas fa-hiking"></i> Trek to Manalog Falls</h4>
+                            <p><strong>Location:</strong> Manalog Falls, a beautiful hidden gem tucked away in the forests of Bukidnon.</p>
+                            <p><strong>Accessibility:</strong> The trek to the falls requires moderate walking over natural terrain, including forest paths and river crossings. Comfortable footwear (preferably hiking boots) is recommended. There are some rocky and uneven paths that may require assistance from your eco-guide.</p>
+                            <p><strong>Transportation:</strong> The group will travel by 4x4 vehicles to the starting point of the trek, as the roads leading to the trail are rough and not suitable for regular vehicles.</p>
+                        </div>
+                        <div class="activity-detail">
+                            <h4><i class="fas fa-book"></i> Biodiversity Learning Session</h4>
+                            <p><strong>Location:</strong> Tagoloan Headwaters.</p>
+                            <p><strong>Accessibility:</strong> This area is easily accessible by vehicles. There will be some walking along designated trails to explore the local ecosystem.</p>
+                            <p><strong>Transportation:</strong> Guests will be transported by eco-van to this site.</p>
+                        </div>
+                        <div class="freebies-box">
+                            <h4><i class="fas fa-gift"></i> Freebies for Day 1</h4>
+                            <ul>
+                                <li></i> Free 4x4 Transport to the starting point of the trek (Manalog Falls)</li>
+                                <li></i> Free Eco-Gear Rental: Trekking poles and biodegradable bags to help you enjoy the tour sustainably</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="itinerary-block">
+                        <h3><i class="fas fa-cloud-sun"></i> Afternoon Activities</h3>
+                        <div class="activity-detail">
+                            <h4><i class="fas fa-campground"></i> Optional Eco-Camp Experience</h4>
+                            <p><strong>Location:</strong> Eco-camp near the river, with breathtaking views of the forest.</p>
+                            <p><strong>Accessibility:</strong> The camp is located on a hill that requires a short, 10-minute walk from the drop-off point. The terrain is moderately steep but manageable for most individuals. Guides will be available to assist.</p>
+                            <p><strong>Transportation:</strong> Transportation to the camp will be provided via 4x4 vehicles, as access roads are rough and require sturdy vehicles.</p>
+                        </div>
+                    </div>
+                    <div class="inclusions">
+                        <h3><i class="fas fa-check-circle"></i> Inclusions</h3>
+                        <div class="inclusion-tags">
+                            <span class="tag">Eco-friendly gear rental (trekking poles, biodegradable bags)</span>
+                            <span class="tag">Light, organic meals sourced from local ingredients</span>
+                            <span class="tag">Educational session on river ecology and conservation</span>
+                        </div>
+                    </div>
+                    <div class="eco-focus">
+                        <h4><i class="fas fa-leaf"></i> Sustainability Focus</h4>
+                        <p>All activities follow Leave-No-Trace principles. Biodegradable materials only, with emphasis on water conservation and ecosystem protection.</p>
+                    </div>
+                    <a href="booking.html" class="btn btn-primary">Book Day 1 - ₱1,500</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Day 2 Section -->
+    <section id="day2" class="day-section alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Day 2</span>
+                <h2>Culture, Farms & Everyday Highlands (Cultural Attractions)</h2>
+                <p class="section-subtitle">Experience cultural attractions and local heritage</p>
+            </div>
+            <div class="day-content reverse">
+                <div class="day-details">
+                    <div class="itinerary-block">
+                        <h3><i class="fas fa-sun"></i> Morning Activities</h3>
+                        <div class="activity-detail">
+                            <h4><i class="fas fa-book-reader"></i> Local Community Storytelling</h4>
+                            <p><strong>Location:</strong> Kalasungay or Can-ayan (local barangays).</p>
+                            <p><strong>Accessibility:</strong> These communities are easily accessible by standard vehicles, but some of the villages are located on uphill roads. A short walk (approximately 5-10 minutes) may be needed to reach the community center where the storytelling will take place.</p>
+                            <p><strong>Transportation:</strong> Guests will be transported via eco-van from the hotel to the community center.</p>
+                        </div>
+                        <div class="activity-detail">
+                            <h4><i class="fas fa-hands"></i> Craft Demonstrations</h4>
+                            <p><strong>Location:</strong> Local workshops in Kalasungay.</p>
+                            <p><strong>Accessibility:</strong> The craft workshops are located in open areas with easy access for all visitors. Some areas may have a slight incline but are generally accessible for most people.</p>
+                            <p><strong>Transportation:</strong> Guests will continue the journey via eco-van.</p>
+                        </div>
+                        <div class="freebies-box">
+                            <h4><i class="fas fa-gift"></i> Freebies for Day 2</h4>
+                            <ul>
+                                <li></i> Free Local Souvenir: A handcrafted item made by local artisans</li>
+                                <li></i> Free Transport for the farm visit in Patpat to avoid any additional walking</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="itinerary-block">
+                        <h3><i class="fas fa-cloud-sun"></i> Afternoon Activities</h3>
+                        <div class="activity-detail">
+                            <h4><i class="fas fa-tractor"></i> Farm Visit in Patpat</h4>
+                            <p><strong>Location:</strong> Patpat (dairy and vegetable farms).</p>
+                            <p><strong>Accessibility:</strong> The farm visit includes a short walk through the farming area, which can sometimes be muddy after rain. This area may not be fully accessible for those with mobility issues, so be prepared for some walking through uneven terrain.</p>
+                            <p><strong>Transportation:</strong> Eco-van will drop guests off at the farm's entrance. The walking tour will be guided by farm staff.</p>
+                        </div>
+                        <div class="activity-detail">
+                            <h4><i class="fas fa-utensils"></i> Community Café Dinner</h4>
+                            <p><strong>Location:</strong> A local café in Patpat or nearby village.</p>
+                            <p><strong>Accessibility:</strong> The café is accessible by standard vehicle, and the location is fully wheelchair-accessible.</p>
+                            <p><strong>Transportation:</strong> Eco-van will transport guests to the café for dinner.</p>
+                        </div>
+                    </div>
+                    <div class="inclusions">
+                        <h3><i class="fas fa-check-circle"></i> Inclusions</h3>
+                        <div class="inclusion-tags">
+                            <span class="tag">Cultural souvenirs (handcrafted jewelry or traditional items)</span>
+                            <span class="tag">Lunch and dinner featuring locally sourced ingredients</span>
+                            <span class="tag">Immersive cultural experience with local guides and performers</span>
+                        </div>
+                    </div>
+                    <div class="eco-focus">
+                        <h4><i class="fas fa-heart"></i> Community Benefits</h4>
+                        <p>Direct support to local artisans and farmers through revenue-sharing models. Authentic cultural experiences led by community members.</p>
+                    </div>
+                    <a href="booking.html" class="btn btn-primary">Book Day 2 - ₱1,300</a>
+                </div>
+                <div class="day-image-grid">
+                    <div class="image-placeholder main-image">
+                        <i class="fas fa-hands"></i>
+                        <span>Cultural Crafts</span>
+                    </div>
+                    <div class="image-placeholder">
+                        <i class="fas fa-tractor"></i>
+                        <span>Farm Visit</span>
+                    </div>
+                    <div class="image-placeholder">
+                        <i class="fas fa-utensils"></i>
+                        <span>Heritage Food</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Day 3 Section -->
+    <section id="day3" class="day-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Day 3</span>
+                <h2>Ridges, Cafés & Sky Serenity (Man-made Attractions)</h2>
+                <p class="section-subtitle">Explore man-made attractions and scenic views</p>
+            </div>
+            <div class="day-content">
+                <div class="day-image-grid">
+                    <div class="image-placeholder main-image">
+                        <i class="fas fa-mountain"></i>
+                        <span>Ridge Walk</span>
+                    </div>
+                    <div class="image-placeholder">
+                        <i class="fas fa-coffee"></i>
+                        <span>Café Hopping</span>
+                    </div>
+                    <div class="image-placeholder">
+                        <i class="fas fa-sun"></i>
+                        <span>Sunset Views</span>
+                    </div>
+                </div>
+                <div class="day-details">
+                    <div class="itinerary-block">
+                        <h3><i class="fas fa-sun"></i> Morning Activities</h3>
+                        <div class="activity-detail">
+                            <h4><i class="fas fa-hiking"></i> Sunrise Ridge Walk</h4>
+                            <p><strong>Location:</strong> Kibalabag or Imbayao ridges.</p>
+                            <p><strong>Accessibility:</strong> The ridge walk requires a moderate hike up the mountain to reach the best viewing points. The trail is somewhat challenging with steep sections, so be prepared for some walking. Guides will assist throughout the hike.</p>
+                            <p><strong>Transportation:</strong> The group will travel by 4x4 vehicles to the base of the trail, as regular vehicles cannot navigate the steep roads.</p>
+                        </div>
+                        <div class="activity-detail">
+                            <h4><i class="fas fa-coffee"></i> Café Hopping</h4>
+                            <p><strong>Location:</strong> Local cafés such as Fortune Valley Café, Bean Zone, and Earth Sky View.</p>
+                            <p><strong>Accessibility:</strong> These cafés are located along the road and are accessible by standard vehicles. No walking required between cafés unless guests wish to explore the surrounding areas.</p>
+                            <p><strong>Transportation:</strong> Guests will be transported by eco-van to visit each café.</p>
+                        </div>
+                        <div class="freebies-box">
+                            <h4><i class="fas fa-gift"></i> Freebies for Day 3</h4>
+                            <ul>
+                                <li></i> Free Transport to all café hopping locations</li>
+                                <li></i> Free Drink at One Café of the guest's choice (Coffee, Tea, or Fresh Juice)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="itinerary-block">
+                        <h3><i class="fas fa-cloud-sun"></i> Afternoon Activities</h3>
+                        <div class="activity-detail">
+                            <h4><i class="fas fa-sun"></i> Sunset Viewing</h4>
+                            <p><strong>Location:</strong> A designated viewing deck in Kibalabag or Imbayao.</p>
+                            <p><strong>Accessibility:</strong> The deck is accessible via a short walk from the vehicle drop-off point. The terrain is smooth and well-maintained, with proper safety rails and seating for comfort.</p>
+                            <p><strong>Transportation:</strong> Eco-van or standard vehicle will be used to transport guests to the viewing deck.</p>
+                        </div>
+                    </div>
+                    <div class="inclusions">
+                        <h3><i class="fas fa-check-circle"></i> Inclusions</h3>
+                        <div class="inclusion-tags">
+                            <span class="tag">Solar-powered charging stations and eco-friendly amenities</span>
+                            <span class="tag">Meals and drinks at eco-conscious cafés</span>
+                            <span class="tag">Guided reflection session on conservation and sustainability</span>
+                        </div>
+                    </div>
+                    <div class="eco-focus">
+                        <h4><i class="fas fa-solar-panel"></i> Sustainability Focus</h4>
+                        <p>Solar-powered facilities at all stops. Optional carbon-offset donations supporting local environmental projects.</p>
+                    </div>
+                    <a href="booking.html" class="btn btn-primary">Book Day 3 - ₱1,700</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainability Section -->
+    <section id="sustainability" class="sustainability-section">
+        <div class="container">
+            <div class="section-header centered">
+                <span class="section-tag">Our Commitment</span>
+                <h2>Sustainability Initiatives</h2>
+                <p class="section-subtitle">Making a positive impact on the environment and community</p>
+            </div>
+            <div class="sustainability-grid">
+                <div class="sustainability-card">
+                    <div class="card-icon">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <h3>Clean Energy</h3>
+                    <p>Solar-powered lighting and charging stations at all key locations</p>
+                </div>
+                <div class="sustainability-card">
+                    <div class="card-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <h3>Waste Management</h3>
+                    <p>Comprehensive waste segregation systems and zero-waste initiatives</p>
+                </div>
+                <div class="sustainability-card">
+                    <div class="card-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h3>Tree Planting</h3>
+                    <p>Optional tree planting or river cleanup activities for all guests</p>
+                </div>
+                <div class="sustainability-card">
+                    <div class="card-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Carbon Offset</h3>
+                    <p>Carbon-offset donation options to neutralize your travel footprint</p>
+                </div>
+                <div class="sustainability-card">
+                    <div class="card-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Community Support</h3>
+                    <p>Revenue-sharing models supporting guides, homestays, and locals</p>
+                </div>
+                <div class="sustainability-card">
+                    <div class="card-icon">
+                        <i class="fas fa-wheelchair"></i>
+                    </div>
+                    <h3>Accessibility</h3>
+                    <p>PWD-friendly improvements and eco-shuttle loop for easy mobility</p>
+                </div>
+            </div>
+            <div class="how-contribute">
+                <h3>How You Can Contribute</h3>
+                <div class="contribute-options">
+                    <div class="contribute-item">
+                        <i class="fas fa-seedling"></i>
+                        <h4>Plant a Tree</h4>
+                        <p>Participate in our tree planting activities</p>
+                    </div>
+                    <div class="contribute-item">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <h4>Make a Donation</h4>
+                        <p>Support local environmental projects</p>
+                    </div>
+                    <div class="contribute-item">
+                        <i class="fas fa-broom"></i>
+                        <h4>Join Cleanups</h4>
+                        <p>River and trail cleanup activities</p>
+                    </div>
+                </div>
+            </div>
+            <div class="partners-section">
+                <h3>Our Partners</h3>
+                <p>We work closely with local communities, certified eco-guides, cultural groups, and environmental organizations to ensure authentic and sustainable experiences.</p>
+                <div class="partner-logos">
+                    <div class="partner-box">Local Communities</div>
+                    <div class="partner-box">Eco-Guides Association</div>
+                    <div class="partner-box">Cultural Heritage Groups</div>
+                    <div class="partner-box">Environmental NGOs</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <div class="section-header centered">
+                <span class="section-tag">Testimonials</span>
+                <h2>What Our Guests Say</h2>
+                <p class="section-subtitle">Real experiences from eco-conscious travelers</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"An unforgettable experience! The perfect blend of adventure and cultural immersion. The eco-guides were knowledgeable and passionate about conservation."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h4>Maria Santos</h4>
+                            <span>Nature Enthusiast</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"The cultural experiences on Day 2 were eye-opening. Learning about local traditions and supporting the community made this trip truly meaningful."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h4>John Rivera</h4>
+                            <span>Cultural Explorer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Loved the sustainability focus! From solar charging stations to tree planting, every detail showed genuine care for the environment. Highly recommend!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h4>Sarah Chen</h4>
+                            <span>Eco-Traveler</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-mountain"></i> Eco-Trail</h3>
+                    <p>Experience sustainable tourism in the beautiful North Highway District of Malaybalay City, Bukidnon.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#day1">Day 1 Itinerary</a></li>
+                        <li><a href="#day2">Day 2 Itinerary</a></li>
+                        <li><a href="#day3">Day 3 Itinerary</a></li>
+                        <li><a href="#sustainability">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="booking.html">Booking</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#terms">Terms & Conditions</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> North Highway District, Malaybalay City, Bukidnon</li>
+                        <li><i class="fas fa-phone"></i> +63 912 345 6789</li>
+                        <li><i class="fas fa-envelope"></i> info@ecotrail-bukidnon.ph</li>
+                        <li><i class="fas fa-clock"></i> Mon - Sun: 8:00 AM - 6:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 North Highway District Eco-Trail. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Custom Logout Confirmation Modal -->
+    <div id="logoutModal" class="custom-modal-overlay" style="display: none;">
+        <div class="custom-modal">
+            <div class="custom-modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+                <h3>Confirm Logout</h3>
+            </div>
+            <div class="custom-modal-body">
+                <p>Are you sure you want to logout? You'll need to login again to access your account.</p>
+            </div>
+            <div class="custom-modal-footer">
+                <button class="btn btn-secondary" onclick="closeLogoutModal()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button class="btn btn-primary" onclick="confirmLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Check if user is logged in and update nav
+        document.addEventListener('DOMContentLoaded', () => {
+            checkUserAuth();
+        });
+
+        function checkUserAuth() {
+            const localUser = localStorage.getItem('ecotrail_user');
+            const sessionUser = sessionStorage.getItem('ecotrail_user');
+            const userDataString = localUser || sessionUser;
+            
+            if (userDataString) {
+                try {
+                    const userData = JSON.parse(userDataString);
+                    // User is logged in
+                    document.getElementById('loginLink').style.display = 'none';
+                    document.getElementById('logoutLink').style.display = 'block';
+                    document.getElementById('userGreeting').style.display = 'block';
+                    
+                    // Set user name
+                    const userName = userData.firstName || userData.name || userData.email.split('@')[0];
+                    document.getElementById('userName').textContent = userName;
+                } catch (e) {
+                    console.error('Error parsing user data:', e);
+                }
+            } else {
+                // User is not logged in
+                document.getElementById('loginLink').style.display = 'block';
+                document.getElementById('logoutLink').style.display = 'none';
+                document.getElementById('userGreeting').style.display = 'none';
+            }
+        }
+
+        function handleLogout(event) {
+            event.preventDefault();
+            showLogoutModal();
+        }
+
+        function showLogoutModal() {
+            const modal = document.getElementById('logoutModal');
+            if (modal) {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeLogoutModal() {
+            const modal = document.getElementById('logoutModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+
+        function confirmLogout() {
+            localStorage.removeItem('ecotrail_user');
+            sessionStorage.removeItem('ecotrail_user');
+            
+            closeLogoutModal();
+            
+            // Show notification if available
+            if (typeof showNotification === 'function') {
+                showNotification('Logged out successfully', 'success');
+            }
+            
+            // Redirect to login page
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1000);
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('logoutModal');
+            if (modal && e.target === modal) {
+                closeLogoutModal();
+            }
+        });
+
+        // Close modal with ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLogoutModal();
+            }
+        });
+    </script>
+</body>
+</html>
+

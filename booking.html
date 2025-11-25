@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Adventure | North Highway District Eco-Trail</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="booking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-mountain"></i>
+                <span>Eco-Trail</span>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#day1" class="nav-link">Day 1</a></li>
+                <li><a href="index.html#day2" class="nav-link">Day 2</a></li>
+                <li><a href="index.html#day3" class="nav-link">Day 3</a></li>
+                <li><a href="index.html#sustainability" class="nav-link">Sustainability</a></li>
+                <li><a href="index.html#testimonials" class="nav-link">Testimonials</a></li>
+                <li><a href="booking.html" class="nav-link btn-nav">Book Now</a></li>
+                <li id="authNav">
+                    <a href="login.html" class="nav-link" id="loginLink">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    <a href="#" class="nav-link" id="logoutLink" style="display: none;" onclick="handleLogout(event)">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                    <span class="nav-link user-greeting" id="userGreeting" style="display: none; color: var(--primary-color); font-weight: 600;">
+                        <i class="fas fa-user-circle"></i> <span id="userName"></span>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Booking Section -->
+    <section class="booking-section" style="padding-top: 120px;">
+        <div class="container">
+            <div class="booking-content">
+                <!-- Page Header -->
+                <div class="section-header centered">
+                    <span class="section-tag">Book Your Adventure</span>
+                    <h2><i class="fas fa-compass"></i> Book Your Personalized Adventure</h2>
+                    <p class="section-subtitle" style="max-width: 900px; margin: 0 auto 2rem; font-size: 1.1rem; line-height: 1.8;">
+                        Welcome to the North Highway District Eco-Trail! We're thrilled to offer you a customized 3-day eco-tour experience that lets you choose the perfect activities based on your interests. Whether you're drawn to the beauty of nature, fascinated by local culture, or looking to explore the unique man-made landmarks, this tour lets you mix and match the activities for each day. <strong>Your adventure, your way!</strong>
+                    </p>
+                </div>
+
+                <div class="booking-modal-body" style="grid-template-columns: 2fr 1fr; gap: 2rem; padding: 0;">
+                    <!-- Left Side: Form -->
+                    <div class="booking-form-section" style="max-height: none; padding-right: 1rem;">
+                        <form id="customBookingForm">
+                            <!-- Personal Information -->
+                            <div class="form-section">
+                                <div class="form-section-title">
+                                    <i class="fas fa-user"></i>
+                                    <h3>Personal Information</h3>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="fullName">Full Name *</label>
+                                        <input type="text" id="fullName" name="fullName" placeholder="John Doe" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email Address *</label>
+                                        <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number *</label>
+                                        <input type="tel" id="phone" name="phone" placeholder="09123456789" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="numberOfPeople">Number of People *</label>
+                                        <select id="numberOfPeople" name="numberOfPeople" required>
+                                            <option value="">Select group size</option>
+                                            <option value="1">1 person</option>
+                                            <option value="2">2 people</option>
+                                            <option value="3">3 people</option>
+                                            <option value="4">4 people</option>
+                                            <option value="5">5 people</option>
+                                            <option value="6-10">6-10 people</option>
+                                            <option value="10+">10+ people</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tour Date Selection -->
+                            <div class="form-section">
+                                <div class="form-section-title">
+                                    <i class="fas fa-calendar"></i>
+                                    <h3>Select Your Tour Date</h3>
+                                    <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem; font-weight: normal;">Choose when you'd like to start your eco-trail adventure</p>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="tourStartDate">Preferred Start Date *</label>
+                                        <input type="date" id="tourStartDate" name="tourStartDate" required>
+                                        <small style="color: var(--text-light); font-size: 0.85rem; margin-top: 0.3rem; display: block;">Please select your preferred start date for the tour</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tourEndDate">Expected End Date</label>
+                                        <input type="date" id="tourEndDate" name="tourEndDate" readonly style="background: var(--light-color); cursor: not-allowed;">
+                                        <small style="color: var(--text-light); font-size: 0.85rem; margin-top: 0.3rem; display: block;">Automatically calculated based on selected days</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Package Selection -->
+                            <div class="form-section">
+                                <div class="form-section-title">
+                                    <i class="fas fa-box"></i>
+                                    <h3>Choose Your Tour Package</h3>
+                                </div>
+                                <div class="package-selection-modal">
+                                    <label class="package-option-modal" data-package="full">
+                                        <input type="radio" name="packageType" value="full" checked>
+                                        <div class="package-content-modal">
+                                            <h4><i class="fas fa-star"></i> Full 3-Day Package</h4>
+                                            <p>Select this if you want to experience the full tour with a mix of all three types of activities (Natural, Cultural, and Man-made) across the three days.</p>
+                                            <span class="package-price-badge">₱4,500/person</span>
+                                            <span class="discount-badge" style="background: var(--accent-color); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.85rem; margin-top: 0.5rem; display: inline-block;">Discounted Price!</span>
+                                        </div>
+                                    </label>
+                                    <label class="package-option-modal" data-package="custom">
+                                        <input type="radio" name="packageType" value="custom">
+                                        <div class="package-content-modal">
+                                            <h4><i class="fas fa-sliders-h"></i> Custom Selection</h4>
+                                            <p>Choose from the three activity types for each day—Natural, Cultural, or Man-made—based on your preferences.</p>
+                                            <span class="package-price-badge">From ₱1,300</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Custom Daily Activities -->
+                            <div class="form-section" id="customActivitiesSection" style="display: none;">
+                                <div class="form-section-title">
+                                    <i class="fas fa-calendar-day"></i>
+                                    <h3>Customize Your Daily Activities</h3>
+                                    <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem; font-weight: normal;">Select 1, 2, or all 3 days based on your preference. You can choose any combination!</p>
+                                </div>
+
+                                <!-- Day 1 -->
+                                <div class="day-selection-modal">
+                                    <h4><i class="fas fa-calendar-alt"></i> Day 1 - Choose Your Activity Type</h4>
+                                    <p style="color: var(--text-light); margin-bottom: 1rem; font-size: 0.95rem;">Select your preferred activity for Day 1 of the tour:</p>
+                                    <div class="activity-types-modal">
+                                        <label class="activity-card-modal" data-day="1" data-type="natural">
+                                            <input type="radio" name="day1Activity" value="natural">
+                                            <i class="fas fa-water"></i>
+                                            <h5>Natural Attractions</h5>
+                                            <p style="font-size: 0.85rem; color: var(--text-light); margin: 0.3rem 0;">Waterfalls, Forest Trekking, River Ecology</p>
+                                            <span class="price">₱1,500</span>
+                                        </label>
+                                        <label class="activity-card-modal" data-day="1" data-type="cultural">
+                                            <input type="radio" name="day1Activity" value="cultural">
+                                            <i class="fas fa-hands"></i>
+                                            <h5>Cultural Attractions</h5>
+                                            <p style="font-size: 0.85rem; color: var(--text-light); margin: 0.3rem 0;">Local Storytelling, Crafting, Cultural Demos</p>
+                                            <span class="price">₱1,300</span>
+                                        </label>
+                                        <label class="activity-card-modal" data-day="1" data-type="manmade">
+                                            <input type="radio" name="day1Activity" value="manmade">
+                                            <i class="fas fa-coffee"></i>
+                                            <h5>Man-made Attractions</h5>
+                                            <p style="font-size: 0.85rem; color: var(--text-light); margin: 0.3rem 0;">Ridge Walks, Café Hopping, Scenic Views</p>
+                                            <span class="price">₱1,700</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Day 2 -->
+                                <div class="day-selection-modal">
+                                    <h4><i class="fas fa-calendar-alt"></i> Day 2 - Choose Your Activity Type</h4>
+                                    <p style="color: var(--text-light); margin-bottom: 1rem; font-size: 0.95rem;">Select your preferred activity for Day 2 of the tour:</p>
+                                    <div class="activity-types-modal">
+                                        <label class="activity-card-modal" data-day="2" data-type="natural">
+                                            <input type="radio" name="day2Activity" value="natural">
+                                            <i class="fas fa-tree"></i>
+                                            <h5>Natural Attractions</h5>
+                                            <p style="font-size: 0.85rem; color: var(--text-light); margin: 0.3rem 0;">Waterfalls, Forest Trekking, River Ecology</p>
+                                            <span class="price">₱1,500</span>
+                                        </label>
+                                        <label class="activity-card-modal" data-day="2" data-type="cultural">
+                                            <input type="radio" name="day2Activity" value="cultural">
+                                            <i class="fas fa-tractor"></i>
+                                            <h5>Cultural Attractions</h5>
+                                            <p style="font-size: 0.85rem; color: var(--text-light); margin: 0.3rem 0;">Local Storytelling, Crafting, Cultural Demos</p>
+                                            <span class="price">₱1,300</span>
+                                        </label>
+                                        <label class="activity-card-modal" data-day="2" data-type="manmade">
+                                            <input type="radio" name="day2Activity" value="manmade">
+                                            <i class="fas fa-mountain"></i>
+                                            <h5>Man-made Attractions</h5>
+                                            <p style="font-size: 0.85rem; color: var(--text-light); margin: 0.3rem 0;">Ridge Walks, Café Hopping, Scenic Views</p>
+                                            <span class="price">₱1,700</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Day 3 -->
+                                <div class="day-selection-modal">
+                                    <h4><i class="fas fa-calendar-alt"></i> Day 3 - Choose Your Activity Type</h4>
+                                    <p style="color: var(--text-light); margin-bottom: 1rem; font-size: 0.95rem;">Select your preferred activity for Day 3 of the tour:</p>
+                                    <div class="activity-types-modal">
+                                        <label class="activity-card-modal" data-day="3" data-type="natural">
+                                            <input type="radio" name="day3Activity" value="natural">
+                                            <i class="fas fa-leaf"></i>
+                                            <h5>Natural Attractions</h5>
+                                            <p style="font-size: 0.85rem; color: var(--text-light); margin: 0.3rem 0;">Waterfalls, Forest Trekking, River Ecology</p>
+                                            <span class="price">₱1,500</span>
+                                        </label>
+                                        <label class="activity-card-modal" data-day="3" data-type="cultural">
+                                            <input type="radio" name="day3Activity" value="cultural">
+                                            <i class="fas fa-utensils"></i>
+                                            <h5>Cultural Attractions</h5>
+                                            <p style="font-size: 0.85rem; color: var(--text-light); margin: 0.3rem 0;">Local Storytelling, Crafting, Cultural Demos</p>
+                                            <span class="price">₱1,300</span>
+                                        </label>
+                                        <label class="activity-card-modal" data-day="3" data-type="manmade">
+                                            <input type="radio" name="day3Activity" value="manmade">
+                                            <i class="fas fa-sun"></i>
+                                            <h5>Man-made Attractions</h5>
+                                            <p style="font-size: 0.85rem; color: var(--text-light); margin: 0.3rem 0;">Ridge Walks, Café Hopping, Scenic Views</p>
+                                            <span class="price">₱1,700</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Optional Add-Ons -->
+                            <div class="form-section">
+                                <div class="form-section-title">
+                                    <i class="fas fa-plus-circle"></i>
+                                    <h3>Optional Add-Ons</h3>
+                                    <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem;">Customize your experience even further with these additional activities:</p>
+                                </div>
+                                <div class="addon-options-modal">
+                                    <label class="addon-card-modal" data-addon="ecocamp">
+                                        <input type="checkbox" name="addon_ecocamp" value="500">
+                                        <div class="addon-info-modal">
+                                            <h5>Eco-Camp Experience</h5>
+                                            <p style="font-size: 0.85rem; color: var(--text-light); margin: 0.3rem 0;">Stay overnight in an eco-friendly camp with guided night walks and stargazing (Day 1 or Day 2)</p>
+                                            <span class="addon-price">₱500/person</span>
+                                        </div>
+                                    </label>
+                                    <label class="addon-card-modal" data-addon="night">
+                                        <input type="checkbox" name="addon_night" value="350">
+                                        <div class="addon-info-modal">
+                                            <h5>Night Programs</h5>
+                                            <p style="font-size: 0.85rem; color: var(--text-light); margin: 0.3rem 0;">Stargazing or local storytelling nights (Day 1 or Day 2)</p>
+                                            <span class="addon-price">₱350/person</span>
+                                        </div>
+                                    </label>
+                                    <label class="addon-card-modal" data-addon="food">
+                                        <input type="checkbox" name="addon_food" value="250">
+                                        <div class="addon-info-modal">
+                                            <h5>Heritage Food Tasting</h5>
+                                            <p style="font-size: 0.85rem; color: var(--text-light); margin: 0.3rem 0;">Enjoy a variety of local delicacies at a traditional farm (Day 2)</p>
+                                            <span class="addon-price">₱250/person</span>
+                                        </div>
+                                    </label>
+                                    <label class="addon-card-modal" data-addon="conservation">
+                                        <input type="checkbox" name="addon_conservation" value="150">
+                                        <div class="addon-info-modal">
+                                            <h5>Conservation Activities</h5>
+                                            <p style="font-size: 0.85rem; color: var(--text-light); margin: 0.3rem 0;">Participate in tree-planting or a river cleanup</p>
+                                            <span class="addon-price">₱150/person</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Special Requests -->
+                            <div class="form-section">
+                                <div class="form-section-title">
+                                    <i class="fas fa-clipboard-list"></i>
+                                    <h3>Special Requests</h3>
+                                    <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem;">Let us know if you have any specific needs or preferences:</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dietary">Dietary Preferences</label>
+                                    <input type="text" id="dietary" name="dietary" placeholder="e.g., Vegetarian, Gluten-Free">
+                                </div>
+                                <div class="form-group">
+                                    <label for="accessibility">Accessibility Needs</label>
+                                    <input type="text" id="accessibility" name="accessibility" placeholder="e.g., Wheelchair Access, Special Accommodations">
+                                </div>
+                            </div>
+
+                            <!-- Payment Method -->
+                            <div class="form-section">
+                                <div class="form-section-title">
+                                    <i class="fas fa-credit-card"></i>
+                                    <h3>Payment Methods</h3>
+                                    <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem;">Choose your preferred payment method:</p>
+                                </div>
+                                <div class="payment-methods-modal">
+                                    <label class="payment-method-modal" data-method="card">
+                                        <input type="radio" name="paymentMethod" value="card" required checked>
+                                        <i class="fas fa-credit-card"></i>
+                                        <span>Credit/Debit Card</span>
+                                        <p style="font-size: 0.8rem; color: var(--text-light); margin-top: 0.3rem;">Visa, MasterCard, Amex</p>
+                                    </label>
+                                    <label class="payment-method-modal" data-method="paypal">
+                                        <input type="radio" name="paymentMethod" value="paypal">
+                                        <i class="fab fa-paypal"></i>
+                                        <span>PayPal</span>
+                                        <p style="font-size: 0.8rem; color: var(--text-light); margin-top: 0.3rem;">Pay securely with PayPal</p>
+                                    </label>
+                                    <label class="payment-method-modal" data-method="bank">
+                                        <input type="radio" name="paymentMethod" value="bank">
+                                        <i class="fas fa-university"></i>
+                                        <span>Bank Transfer</span>
+                                        <p style="font-size: 0.8rem; color: var(--text-light); margin-top: 0.3rem;">Direct transfer (details after booking)</p>
+                                    </label>
+                                    <label class="payment-method-modal" data-method="cash">
+                                        <input type="radio" name="paymentMethod" value="cash">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                        <span>Cash on Arrival</span>
+                                        <p style="font-size: 0.8rem; color: var(--text-light); margin-top: 0.3rem;">For locals (available for Day 1 booking)</p>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="fas fa-check-circle"></i> Complete Booking
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Right Side: Price Summary -->
+                    <div class="price-summary-modal" id="priceSummary" style="position: sticky; top: 120px;">
+                        <h3><i class="fas fa-calculator"></i> Price Summary</h3>
+                        
+                        <div class="price-line">
+                            <span>Base Package:</span>
+                            <span id="basePrice">$140.00</span>
+                        </div>
+                        
+                        <div id="activityBreakdown"></div>
+                        <div id="addonsList"></div>
+                        
+                        <div class="price-line">
+                            <span>Number of People:</span>
+                            <span id="peopleCount">1</span>
+                        </div>
+                        
+                        <div class="price-line">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">$140.00</span>
+                        </div>
+                        
+                        <div class="price-line" id="discountLine" style="display: none; color: #4caf50;">
+                            <span>Discount:</span>
+                            <span id="discountAmount">-$0.00</span>
+                        </div>
+                        
+                        <div class="price-total">
+                            <div class="price-line">
+                                <span>Total:</span>
+                                <span id="totalPrice">$140.00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="discount-code-section">
+                            <label style="font-size: 0.9rem; font-weight: 600;">Discount Code</label>
+                            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin: 0.5rem 0;">Student or Educational Discounts: Use promo code <strong>STUDENT20</strong> for a 20% discount on group bookings (10+ people).</p>
+                            <div class="discount-input-group">
+                                <input type="text" id="discountCode" placeholder="Enter code (e.g., STUDENT20)">
+                                <button type="button" id="applyDiscount">Apply</button>
+                            </div>
+                            <div id="discountApplied" class="discount-applied" style="display: none;">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Code applied!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-mountain"></i> Eco-Trail</h3>
+                    <p>Experience the perfect blend of nature, culture, and sustainability in the beautiful highlands of Malaybalay City, Bukidnon.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html#home">Home</a></li>
+                        <li><a href="index.html#day1">Day 1 Itinerary</a></li>
+                        <li><a href="index.html#day2">Day 2 Itinerary</a></li>
+                        <li><a href="index.html#day3">Day 3 Itinerary</a></li>
+                        <li><a href="index.html#sustainability">Sustainability</a></li>
+                        <li><a href="index.html#testimonials">Testimonials</a></li>
+                        <li><a href="booking.html">Booking</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> North Highway District, Malaybalay City, Bukidnon</li>
+                        <li><i class="fas fa-phone"></i> +63 912 345 6789</li>
+                        <li><i class="fas fa-envelope"></i> info@ecotrail-bukidnon.ph</li>
+                        <li><i class="fas fa-clock"></i> Mon - Sun: 8:00 AM - 6:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 North Highway District Eco-Trail. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Custom Logout Confirmation Modal -->
+    <div id="logoutModal" class="custom-modal-overlay" style="display: none;">
+        <div class="custom-modal">
+            <div class="custom-modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+                <h3>Confirm Logout</h3>
+            </div>
+            <div class="custom-modal-body">
+                <p>Are you sure you want to logout? You'll need to login again to access your account.</p>
+            </div>
+            <div class="custom-modal-footer">
+                <button class="btn btn-secondary" onclick="closeLogoutModal()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button class="btn btn-primary" onclick="confirmLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="booking.js"></script>
+    <script>
+        // Check if user is logged in and update nav
+        document.addEventListener('DOMContentLoaded', () => {
+            checkUserAuth();
+        });
+
+        function checkUserAuth() {
+            const localUser = localStorage.getItem('ecotrail_user');
+            const sessionUser = sessionStorage.getItem('ecotrail_user');
+            const userDataString = localUser || sessionUser;
+            
+            if (userDataString) {
+                try {
+                    const userData = JSON.parse(userDataString);
+                    // User is logged in
+                    document.getElementById('loginLink').style.display = 'none';
+                    document.getElementById('logoutLink').style.display = 'block';
+                    document.getElementById('userGreeting').style.display = 'block';
+                    
+                    // Set user name
+                    const userName = userData.firstName || userData.name || userData.email.split('@')[0];
+                    document.getElementById('userName').textContent = userName;
+                } catch (e) {
+                    console.error('Error parsing user data:', e);
+                }
+            } else {
+                // User is not logged in
+                document.getElementById('loginLink').style.display = 'block';
+                document.getElementById('logoutLink').style.display = 'none';
+                document.getElementById('userGreeting').style.display = 'none';
+            }
+        }
+
+        function handleLogout(event) {
+            event.preventDefault();
+            showLogoutModal();
+        }
+
+        function showLogoutModal() {
+            const modal = document.getElementById('logoutModal');
+            if (modal) {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeLogoutModal() {
+            const modal = document.getElementById('logoutModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+
+        function confirmLogout() {
+            localStorage.removeItem('ecotrail_user');
+            sessionStorage.removeItem('ecotrail_user');
+            
+            closeLogoutModal();
+            
+            // Show notification if available
+            if (typeof showNotification === 'function') {
+                showNotification('Logged out successfully', 'success');
+            }
+            
+            // Redirect to login page
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1000);
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('logoutModal');
+            if (modal && e.target === modal) {
+                closeLogoutModal();
+            }
+        });
+
+        // Close modal with ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLogoutModal();
+            }
+        });
+    </script>
+</body>
+</html>
+
