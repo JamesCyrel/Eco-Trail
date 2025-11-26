@@ -103,10 +103,11 @@
             </div>
             <div class="day-content">
                 <div class="day-image-grid">
-                    <div class="image-placeholder main-image">
+                    <button class="image-placeholder main-image gallery-trigger" data-gallery="kinapuntan" aria-label="View Kinapuntan Falls gallery">
                         <i class="fas fa-water"></i>
-                        <span>Manalog Falls</span>
-                    </div>
+                        <span>Kinapuntan Falls</span>
+                        <span class="image-hint">Tap to preview Kinapuntan Falls</span>
+                    </button>
                     <div class="image-placeholder">
                         <i class="fas fa-tree"></i>
                         <span>Tagoloan Headwaters</span>
@@ -120,10 +121,10 @@
                     <div class="itinerary-block">
                         <h3><i class="fas fa-sun"></i> Morning Activities</h3>
                         <div class="activity-detail">
-                            <h4><i class="fas fa-hiking"></i> Trek to Manalog Falls</h4>
-                            <p><strong>Location:</strong> Manalog Falls, a beautiful hidden gem tucked away in the forests of Bukidnon.</p>
-                            <p><strong>Accessibility:</strong> The trek to the falls requires moderate walking over natural terrain, including forest paths and river crossings. Comfortable footwear (preferably hiking boots) is recommended. There are some rocky and uneven paths that may require assistance from your eco-guide.</p>
-                            <p><strong>Transportation:</strong> The group will travel by 4x4 vehicles to the starting point of the trek, as the roads leading to the trail are rough and not suitable for regular vehicles.</p>
+                            <h4><i class="fas fa-hiking"></i> Trek to Kinapuntan Falls</h4>
+                            <p><strong>Location:</strong> Kinapuntan Falls, tucked within the Manalog forests of Bukidnon and celebrated for its cliffside drop and cooling mist.</p>
+                            <p><strong>Accessibility:</strong> Expect a moderate trek along forest trails with shallow river crossings and uneven, rocky segments. Support from eco-guides is provided, and sturdy hiking shoes are highly recommended.</p>
+                            <p><strong>Transportation:</strong> 4x4 vehicles ferry the group to the jump-off point since the rugged approach trail is inaccessible to standard vehicles.</p>
                         </div>
                         <div class="activity-detail">
                             <h4><i class="fas fa-book"></i> Biodiversity Learning Session</h4>
@@ -134,9 +135,9 @@
                         <div class="freebies-box">
                             <h4><i class="fas fa-gift"></i> Freebies for Day 1</h4>
                             <ul>
-                                <li></i> Free 4x4 Transport to the starting point of the trek (Manalog Falls)</li>
+                                <li></i> Free 4x4 transport to the Kinapuntan Falls jump-off</li>
                                 <li></i> Free Eco-Gear Rental: Trekking poles and biodegradable bags to help you enjoy the tour sustainably</li>
-                            </ul>
+                        </ul>
                         </div>
                     </div>
                     <div class="itinerary-block">
@@ -195,7 +196,7 @@
                             <ul>
                                 <li></i> Free Local Souvenir: A handcrafted item made by local artisans</li>
                                 <li></i> Free Transport for the farm visit in Patpat to avoid any additional walking</li>
-                            </ul>
+                        </ul>
                         </div>
                     </div>
                     <div class="itinerary-block">
@@ -288,7 +289,7 @@
                             <ul>
                                 <li></i> Free Transport to all café hopping locations</li>
                                 <li></i> Free Drink at One Café of the guest's choice (Coffee, Tea, or Fresh Juice)</li>
-                            </ul>
+                        </ul>
                         </div>
                     </div>
                     <div class="itinerary-block">
@@ -553,11 +554,29 @@
         </div>
     </div>
 
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="gallery-modal-overlay" style="display: none;">
+        <div class="gallery-modal">
+            <button class="gallery-close" aria-label="Close gallery" onclick="closeGalleryModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="gallery-header">
+                <p class="gallery-label">Hidden Gems Preview</p>
+                <h3 id="galleryTitle">Kinapuntan Falls</h3>
+                <p id="gallerySubtitle">Waterfall highlights from Malaybalay City</p>
+            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <script>
-        // Check if user is logged in and update nav
+        // Initialize components
         document.addEventListener('DOMContentLoaded', () => {
             checkUserAuth();
+            initGalleryTriggers();
         });
 
         function checkUserAuth() {
@@ -637,6 +656,69 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeLogoutModal();
+                closeGalleryModal();
+            }
+        });
+
+        // ================================
+        // Gallery Modal Logic
+        // ================================
+        const galleryData = {
+            kinapuntan: {
+                title: 'Kinapuntan Falls',
+                subtitle: 'Mist-kissed cascades near Dumalaguing, Malaybalay City',
+                images: [
+                    { src: 'images/kinapuntan.png', label: 'Kinapuntan Falls — Cliffside Panorama' },
+                    { src: 'images/kinapuntan1.png', label: 'Kinapuntan Falls — Twin Stream Flow' },
+                    { src: 'images/kinapuntan3.png', label: 'Kinapuntan Falls — Highland Approach' },
+                    { src: 'images/kinapuntan2.png', label: 'Kinapuntan Falls — River Rocks Close-up' },
+                ]
+            }
+        };
+
+        function initGalleryTriggers() {
+            const triggers = document.querySelectorAll('.gallery-trigger');
+            triggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const key = trigger.dataset.gallery;
+                    openGalleryModal(key);
+                });
+            });
+        }
+
+        function openGalleryModal(key) {
+            const modal = document.getElementById('galleryModal');
+            if (!modal || !galleryData[key]) return;
+
+            const data = galleryData[key];
+            document.getElementById('galleryTitle').textContent = data.title;
+            document.getElementById('gallerySubtitle').textContent = data.subtitle;
+
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = data.images.map(image => `
+                <figure class="gallery-card">
+                    <img src="${image.src}" alt="${image.label}">
+                    <figcaption>${image.label}</figcaption>
+                </figure>
+            `).join('');
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGalleryModal() {
+            const modal = document.getElementById('galleryModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close gallery clicking overlay
+        document.addEventListener('click', (e) => {
+            const galleryModal = document.getElementById('galleryModal');
+            if (galleryModal && e.target === galleryModal) {
+                closeGalleryModal();
             }
         });
     </script>
