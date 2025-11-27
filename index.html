@@ -30,7 +30,7 @@
                 <li><a href="#day3" class="nav-link">Day 3</a></li>
                 <li><a href="#sustainability" class="nav-link">Sustainability</a></li>
                 <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
-                <li><a href="booking.html" class="nav-link btn-nav">Book Now</a></li>
+                <li><a href="#" onclick="handleBookingClick(event)" class="nav-link btn-nav">Book Now</a></li>
                 <li id="authNav">
                     <a href="login.html" class="nav-link" id="loginLink">
                         <i class="fas fa-sign-in-alt"></i> Login
@@ -55,7 +55,7 @@
             <p class="hero-description">Welcome to the North Highway District Eco-Trail, an immersive 3-day eco-tour designed for those who seek to connect with the natural beauty, rich culture, and unique man-made landmarks of Malaybalay City, Bukidnon. Whether you're drawn to stunning waterfalls, fascinated by local traditions, or seeking the charm of scenic ridge walks, the Eco-Trail offers a customized adventure like no other.</p>
             <p class="hero-description" style="margin-top: 1rem; font-size: 1.1rem;">Choose from Natural, Cultural, or Man-made attractions each day, and build the perfect experience tailored to your interests. With a focus on sustainability, local community engagement, and memorable experiences, the Eco-Trail is your gateway to discovering the hidden gems of the North Highway District.</p>
             <div class="hero-buttons">
-                <a href="booking.html" class="btn btn-primary">Book Your Adventure</a>
+                <a href="#" onclick="handleBookingClick(event)" class="btn btn-primary">Book Your Adventure</a>
                 <a href="#day1" class="btn btn-secondary">Explore Itinerary</a>
             </div>
         </div>
@@ -165,7 +165,7 @@
                         <h4><i class="fas fa-leaf"></i> Sustainability Focus</h4>
                         <p>All activities follow Leave-No-Trace principles. Biodegradable materials only, with emphasis on water conservation and ecosystem protection.</p>
                     </div>
-                    <a href="booking.html" class="btn btn-primary">Book Day 1 - ₱1,500</a>
+                    <a href="#" onclick="handleBookingClick(event)" class="btn btn-primary">Book Day 1 - ₱1,500</a>
                 </div>
             </div>
         </div>
@@ -230,7 +230,7 @@
                         <h4><i class="fas fa-heart"></i> Community Benefits</h4>
                         <p>Direct support to local artisans and farmers through revenue-sharing models. Authentic cultural experiences led by community members.</p>
                     </div>
-                    <a href="booking.html" class="btn btn-primary">Book Day 2 - ₱1,300</a>
+                    <a href="#" onclick="handleBookingClick(event)" class="btn btn-primary">Book Day 2 - ₱1,300</a>
                 </div>
                 <div class="day-image-grid">
                     <button class="image-placeholder main-image gallery-trigger" data-gallery="cultural" aria-label="View Cultural Crafts gallery">
@@ -265,10 +265,11 @@
                         <i class="fas fa-mountain"></i>
                         <span>Ridge Walk</span>
                     </div>
-                    <div class="image-placeholder">
+                    <button class="image-placeholder gallery-trigger" data-gallery="cafes" aria-label="View Café Hopping preview">
                         <i class="fas fa-coffee"></i>
                         <span>Café Hopping</span>
-                    </div>
+                        <span class="image-hint">Tap to preview cafés</span>
+                    </button>
                     <div class="image-placeholder">
                         <i class="fas fa-sun"></i>
                         <span>Sunset Views</span>
@@ -318,7 +319,7 @@
                         <h4><i class="fas fa-solar-panel"></i> Sustainability Focus</h4>
                         <p>Solar-powered facilities at all stops. Optional carbon-offset donations supporting local environmental projects.</p>
                     </div>
-                    <a href="booking.html" class="btn btn-primary">Book Day 3 - ₱1,700</a>
+                    <a href="#" onclick="handleBookingClick(event)" class="btn btn-primary">Book Day 3 - ₱1,700</a>
                 </div>
             </div>
         </div>
@@ -590,6 +591,33 @@
             initGalleryTriggers();
         });
 
+        // Handle booking button clicks
+        function handleBookingClick(event) {
+            event.preventDefault();
+            
+            const localUser = localStorage.getItem('ecotrail_user');
+            const sessionUser = sessionStorage.getItem('ecotrail_user');
+            const userDataString = localUser || sessionUser;
+            
+            if (userDataString) {
+                // User is logged in, proceed to booking page
+                window.location.href = 'booking.html';
+            } else {
+                // User is not logged in, show notification and redirect to login
+                if (typeof showNotification === 'function') {
+                    showNotification('Please login or sign up to book your tour', 'info');
+                }
+                
+                // Store the booking page URL to redirect after login
+                sessionStorage.setItem('redirectAfterLogin', 'booking.html');
+                
+                // Redirect to login page after a short delay
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1500);
+            }
+        }
+
         function checkUserAuth() {
             const localUser = localStorage.getItem('ecotrail_user');
             const sessionUser = sessionStorage.getItem('ecotrail_user');
@@ -781,6 +809,47 @@
                     accessibility: 'Workshops are reachable by van with short walks through wooden walkways and open huts.',
                     transportation: 'Eco-vans transport guests directly to the weaving sites'
                 }
+            },
+            cafes: {
+                title: 'Café Hopping Experience',
+                subtitle: 'Three unique cafés in the North Highway District — Coffee, views, and local flavors',
+                images: [
+                    // Fortune Valley Café
+                    { src: 'images/fortune.png', label: 'Fortune Valley Café — Main Area', cafe: 'Fortune Valley' },
+                    { src: 'images/fortune1.png', label: 'Fortune Valley — Mountain Views', cafe: 'Fortune Valley' },
+                    { src: 'images/fortune2.png', label: 'Fortune Valley — Interior', cafe: 'Fortune Valley' },
+                    { src: 'images/fortune3.png', label: 'Fortune Valley — Dining Area', cafe: 'Fortune Valley' },
+                    // Bean Zone Café
+                    { src: 'images/beanzone.png', label: 'Bean Zone Café — Exterior', cafe: 'Bean Zone' },
+                    { src: 'images/beanzone1.png', label: 'Bean Zone — Coffee Bar', cafe: 'Bean Zone' },
+                    { src: 'images/beanzone2.png', label: 'Bean Zone — Seating Area', cafe: 'Bean Zone' },
+                    { src: 'images/beanzone3.png', label: 'Bean Zone — Cozy Ambiance', cafe: 'Bean Zone' },
+                    // Earth Sky View Café
+                    { src: 'images/earthsky.png', label: 'Earth Sky View — Panoramic View', cafe: 'Earth Sky View' },
+                    { src: 'images/earthsky1.png', label: 'Earth Sky View — Outdoor Seating', cafe: 'Earth Sky View' },
+                    { src: 'images/earthsky2.png', label: 'Earth Sky View — Welcome Sign', cafe: 'Earth Sky View' },
+                    { src: 'images/earthsky3.png', label: 'Earth Sky View — Scenic Mountain Backdrop', cafe: 'Earth Sky View' },
+                ],
+                cafeDetails: [
+                    {
+                        name: 'Fortune Valley Café',
+                        location: 'Barangay Kibalabag, North Highway District, Malaybalay City — Cozy café serving specialty coffee and light meals with a relaxing atmosphere',
+                        accessibility: 'Easily accessible from the main road. No walking required unless guests wish to explore the surrounding area.',
+                        transportation: 'Eco-van transport provided as part of the café hopping tour'
+                    },
+                    {
+                        name: 'Bean Zone Café',
+                        location: 'Barangay Kibalabag, North Highway District, Malaybalay City — Known for artisan coffee blends and a cozy, local vibe',
+                        accessibility: 'Short walk from parking area if guests wish to explore the surroundings. Otherwise, fully accessible by vehicle.',
+                        transportation: 'Eco-van transport provided as part of the café hopping tour'
+                    },
+                    {
+                        name: 'Earth Sky View Café',
+                        location: 'Barangay Imbayao, Malaybalay City — Offers coffee, snacks, and panoramic mountain views',
+                        accessibility: 'Easily reached from the drop-off area. Short walk recommended to enjoy the scenery.',
+                        transportation: 'Eco-van transport provided as part of the café hopping tour'
+                    }
+                ]
             }
         };
 
@@ -852,6 +921,34 @@
                                 <div class="detail-item" style="margin-bottom: 0;">
                                     <strong><i class="fas fa-truck-monster"></i> Transportation:</strong>
                                     <p>${camp.transportation}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            // Add details section for café hopping view
+            if (data.cafeDetails) {
+                gridHTML += `
+                    <div class="eco-camp-details-panel" style="grid-column: 1 / -1;">
+                        <h4><i class="fas fa-info-circle"></i> Café Information</h4>
+                        ${data.cafeDetails.map(cafe => `
+                            <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.2);">
+                                <h5 style="font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                    <i class="fas fa-coffee"></i> ${cafe.name}
+                                </h5>
+                                <div class="detail-item">
+                                    <strong><i class="fas fa-map-marker-alt"></i> Location:</strong>
+                                    <p>${cafe.location}</p>
+                                </div>
+                                <div class="detail-item">
+                                    <strong><i class="fas fa-walking"></i> Accessibility:</strong>
+                                    <p>${cafe.accessibility}</p>
+                                </div>
+                                <div class="detail-item" style="margin-bottom: 0;">
+                                    <strong><i class="fas fa-van-shuttle"></i> Transportation:</strong>
+                                    <p>${cafe.transportation}</p>
                                 </div>
                             </div>
                         `).join('')}

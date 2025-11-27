@@ -67,9 +67,17 @@ function handleLogin(e) {
         
         showNotification('Login successful! Redirecting...', 'success');
         
-        // Redirect to index page
+        // Check if there's a redirect URL stored
+        const redirectUrl = sessionStorage.getItem('redirectAfterLogin');
+        
+        // Redirect to stored URL or default to index page
         setTimeout(() => {
-            window.location.href = 'index.html';
+            if (redirectUrl) {
+                sessionStorage.removeItem('redirectAfterLogin');
+                window.location.href = redirectUrl;
+            } else {
+                window.location.href = 'index.html';
+            }
         }, 1500);
         
     }, 1500);
@@ -149,9 +157,17 @@ function handleSignup(e) {
         
         showNotification('Account created successfully! Redirecting...', 'success');
         
-        // Redirect to index page
+        // Check if there's a redirect URL stored
+        const redirectUrl = sessionStorage.getItem('redirectAfterLogin');
+        
+        // Redirect to stored URL or default to index page
         setTimeout(() => {
-            window.location.href = 'index.html';
+            if (redirectUrl) {
+                sessionStorage.removeItem('redirectAfterLogin');
+                window.location.href = redirectUrl;
+            } else {
+                window.location.href = 'index.html';
+            }
         }, 1500);
         
     }, 2000);
