@@ -233,10 +233,11 @@
                     <a href="booking.html" class="btn btn-primary">Book Day 2 - ₱1,300</a>
                 </div>
                 <div class="day-image-grid">
-                    <div class="image-placeholder main-image">
+                    <button class="image-placeholder main-image gallery-trigger" data-gallery="cultural" aria-label="View Cultural Crafts gallery">
                         <i class="fas fa-hands"></i>
                         <span>Cultural Crafts</span>
-                    </div>
+                        <span class="image-hint">Tap to preview cultural crafts</span>
+                    </button>
                     <div class="image-placeholder">
                         <i class="fas fa-tractor"></i>
                         <span>Farm Visit</span>
@@ -768,6 +769,19 @@
                     location: 'Katihan Eco Park, Barangay Kibalabag, North Highway District',
                     accessibility: 'Short walk from drop-off (~10–15 minutes) to camping areas. Trails are manageable with guides available.',
                     transportation: '4x4 vehicles provided as part of the tour'
+                }
+            },
+            cultural: {
+                title: 'Cultural Crafts Experience',
+                subtitle: 'Mindanao weaving traditions in Kalasungay and surrounding barangays',
+                images: [
+                    { src: 'images/cultural.png', label: 'Mat Weaving Demonstration' },
+                    { src: 'images/cultural1.png', label: 'Traditional Handloom Weaving' }
+                ],
+                details: {
+                    location: 'Community weaving centers in Kalasungay & Can-ayan, Malaybalay City',
+                    accessibility: 'Workshops are reachable by van with short walks through wooden walkways and open huts.',
+                    transportation: 'Eco-vans transport guests directly to the weaving sites'
                 }
             }
         };
