@@ -1709,6 +1709,21 @@ body {
     gap: 1rem;
 }
 
+.gallery-grid.single-image {
+    grid-template-columns: minmax(280px, 1fr);
+    justify-items: center;
+}
+
+.gallery-grid.single-image .gallery-card {
+    max-width: 480px;
+}
+
+.gallery-grid.single-image .gallery-card img {
+    height: auto;
+    max-height: 320px;
+    object-fit: contain;
+}
+
 .gallery-card {
     border-radius: 16px;
     overflow: hidden;

@@ -242,10 +242,11 @@
                         <i class="fas fa-tractor"></i>
                         <span>Farm Visit</span>
                     </div>
-                    <div class="image-placeholder">
+                    <button class="image-placeholder gallery-trigger" data-gallery="heritagefood" aria-label="View Heritage Food preview">
                         <i class="fas fa-utensils"></i>
                         <span>Heritage Food</span>
-                    </div>
+                        <span class="image-hint">Tap to preview heritage dishes</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -850,6 +851,13 @@
                         transportation: 'Eco-van transport provided as part of the café hopping tour'
                     }
                 ]
+            },
+            heritagefood: {
+                title: 'Heritage Food Tasting',
+                subtitle: 'Local delicacies prepared by community chefs',
+                images: [
+                    { src: 'images/heritage_food.png', label: 'Signature corn delicacy' }
+                ]
             }
         };
 
@@ -957,6 +965,13 @@
             }
 
             grid.innerHTML = gridHTML;
+
+            // Adjust layout when only one image exists
+            if (data.images.length === 1) {
+                grid.classList.add('single-image');
+            } else {
+                grid.classList.remove('single-image');
+            }
 
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
