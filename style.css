@@ -299,11 +299,15 @@ body {
 }
 
 .info-card {
+    display: block;
     text-align: center;
     padding: 2rem;
     background: var(--light-color);
     border-radius: 15px;
     transition: var(--transition);
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--shadow);
 }
 
 .info-card:hover {
