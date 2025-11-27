@@ -238,10 +238,11 @@
                         <span>Cultural Crafts</span>
                         <span class="image-hint">Tap to preview cultural crafts</span>
                     </button>
-                    <div class="image-placeholder">
+                    <button class="image-placeholder gallery-trigger" data-gallery="farmvisit" aria-label="View Farm Visit preview">
                         <i class="fas fa-tractor"></i>
                         <span>Farm Visit</span>
-                    </div>
+                        <span class="image-hint">Tap to preview Patpat farms</span>
+                    </button>
                     <button class="image-placeholder gallery-trigger" data-gallery="heritagefood" aria-label="View Heritage Food preview">
                         <i class="fas fa-utensils"></i>
                         <span>Heritage Food</span>
@@ -856,7 +857,16 @@
                 title: 'Heritage Food Tasting',
                 subtitle: 'Local delicacies prepared by community chefs',
                 images: [
-                    { src: 'images/heritage_food.png', label: 'Signature corn delicacy' }
+                    { src: 'images/heritage_food.png', label: 'Binaki' }
+                ]
+            },
+            farmvisit: {
+                title: 'Patpat Farm Visit',
+                subtitle: 'Vegetable terraces and demo plots in Malaybalay City',
+                images: [
+                    { src: 'images/farm.png', label: 'Chili rows with mountain views' },
+                    { src: 'images/farm1.png', label: 'Expansive vegetable plots' },
+                    { src: 'images/farm2.png', label: 'Terraced fields with plastic mulch' }
                 ]
             }
         };
