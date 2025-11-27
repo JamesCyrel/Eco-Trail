@@ -1394,3 +1394,123 @@
     }
 }
 
+/* ===================================
+   ECO-CAMP SELECTION STYLES
+   =================================== */
+.eco-camp-selection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.eco-camp-option {
+    border: 3px solid var(--light-color);
+    border-radius: 15px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    display: block;
+    background: var(--white);
+}
+
+.eco-camp-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.eco-camp-option:hover {
+    border-color: var(--secondary-color);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.eco-camp-option:has(input[type="radio"]:checked) {
+    border-color: var(--primary-color);
+    background: var(--light-color);
+    box-shadow: 0 0 0 3px rgba(45, 122, 79, 0.1);
+}
+
+.eco-camp-card-content {
+    text-align: center;
+}
+
+.eco-camp-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    transition: var(--transition);
+}
+
+.eco-camp-icon i {
+    font-size: 2rem;
+    color: var(--white);
+}
+
+.eco-camp-option:hover .eco-camp-icon {
+    transform: scale(1.1);
+}
+
+.eco-camp-card-content h4 {
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.eco-camp-card-content p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.btn-preview {
+    background: var(--secondary-color);
+    color: var(--white);
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-preview:hover {
+    background: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .eco-camp-selection-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .eco-camp-option {
+        padding: 1.2rem;
+    }
+
+    .eco-camp-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .eco-camp-icon i {
+        font-size: 1.6rem;
+    }
+
+    .eco-camp-card-content h4 {
+        font-size: 1.1rem;
+    }
+}
+

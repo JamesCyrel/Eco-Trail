@@ -13,8 +13,11 @@
     <nav class="navbar" id="navbar">
         <div class="container">
             <div class="nav-brand">
-                <i class="fas fa-mountain"></i>
-                <span>Eco-Trail</span>
+                <img src="images/logo.png" alt="North Highway District Eco-Trail logo" class="nav-logo">
+                <div class="nav-brand-text">
+                    <span class="brand-title">Eco-Trail</span>
+                    <span class="brand-subtitle">North Highway District</span>
+                </div>
             </div>
             <div class="nav-toggle" id="navToggle">
                 <span></span>
@@ -144,6 +147,66 @@
                                         </div>
                                     </label>
                                 </div>
+                            </div>
+
+                            <!-- Eco-Camp Selection (visible for both packages) -->
+                            <div class="form-section" id="ecoCampSelectionSection">
+                                <div class="form-section-title">
+                                    <i class="fas fa-campground"></i>
+                                    <h3>Choose Your Eco-Camp (Optional)</h3>
+                                    <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem; font-weight: normal;">
+                                        If you added the Eco-Camp Experience, choose your preferred camp location. You can also preview each camp before selecting.
+                                    </p>
+                                </div>
+                                <input type="hidden" id="selectedEcoCamp" name="selectedEcoCamp" value="">
+                                
+                                <div class="eco-camp-selection-grid">
+                                    <label class="eco-camp-option" data-camp="sabangan">
+                                        <input type="radio" name="ecoCampChoice" value="sabangan">
+                                        <div class="eco-camp-card-content">
+                                            <div class="eco-camp-icon">
+                                                <i class="fas fa-water"></i>
+                                            </div>
+                                            <h4>Sabangan Eco-Camp</h4>
+                                            <p>Riverfront setting near Can-ayan</p>
+                                            <button type="button" class="btn-preview gallery-trigger" data-gallery="sabangan">
+                                                <i class="fas fa-images"></i> Preview Camp
+                                            </button>
+                                        </div>
+                                    </label>
+
+                                    <label class="eco-camp-option" data-camp="misty">
+                                        <input type="radio" name="ecoCampChoice" value="misty">
+                                        <div class="eco-camp-card-content">
+                                            <div class="eco-camp-icon">
+                                                <i class="fas fa-mountain"></i>
+                                            </div>
+                                            <h4>Misty Mountain Eco-Camp</h4>
+                                            <p>Highland forest with scenic views</p>
+                                            <button type="button" class="btn-preview gallery-trigger" data-gallery="misty">
+                                                <i class="fas fa-images"></i> Preview Camp
+                                            </button>
+                                        </div>
+                                    </label>
+
+                                    <label class="eco-camp-option" data-camp="katihan">
+                                        <input type="radio" name="ecoCampChoice" value="katihan">
+                                        <div class="eco-camp-card-content">
+                                            <div class="eco-camp-icon">
+                                                <i class="fas fa-tree"></i>
+                                            </div>
+                                            <h4>Katihan Eco-Camp</h4>
+                                            <p>Riverside corridor in Kibalabag</p>
+                                            <button type="button" class="btn-preview gallery-trigger" data-gallery="katihan">
+                                                <i class="fas fa-images"></i> Preview Camp
+                                            </button>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 1rem; font-style: italic;">
+                                    <i class="fas fa-info-circle"></i> Note: Eco-camp selection is included when you check the "Eco-Camp Experience" add-on. No additional cost.
+                                </p>
                             </div>
 
                             <!-- Custom Daily Activities -->
@@ -401,7 +464,13 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3><i class="fas fa-mountain"></i> Eco-Trail</h3>
+                    <div class="footer-brand">
+                        <img src="images/logo.png" alt="North Highway District Eco-Trail logo" class="footer-logo">
+                        <div>
+                            <h3>Eco-Trail</h3>
+                            <p class="footer-tagline">North Highway District</p>
+                        </div>
+                    </div>
                     <p>Experience the perfect blend of nature, culture, and sustainability in the beautiful highlands of Malaybalay City, Bukidnon.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -462,6 +531,23 @@
                 <button class="btn btn-primary" onclick="confirmLogout()">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Modal for Eco-Camps -->
+    <div id="galleryModal" class="gallery-modal-overlay" style="display: none;">
+        <div class="gallery-modal">
+            <button class="gallery-close" aria-label="Close gallery" onclick="closeGalleryModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="gallery-header">
+                <p class="gallery-label">Eco-Camp Preview</p>
+                <h3 id="galleryTitle">Camp Name</h3>
+                <p id="gallerySubtitle">Location details</p>
+            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Populated via JS -->
             </div>
         </div>
     </div>
@@ -551,7 +637,135 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeLogoutModal();
+                closeGalleryModal();
             }
+        });
+
+        // ================================
+        // Gallery Modal Logic for Eco-Camps
+        // ================================
+        const galleryData = {
+            sabangan: {
+                title: 'Sabangan Eco-Camp',
+                subtitle: 'Sabangan, Can-ayan, Malaybalay City — Riverfront camping surrounded by forested hills',
+                images: [
+                    { src: 'images/sabangan.png', label: 'Sabangan Eco-Camp — Main Area' },
+                    { src: 'images/sabangan1.png', label: 'Sabangan Eco-Camp — Riverside View' },
+                    { src: 'images/sabangan2.png', label: 'Sabangan Eco-Camp — Forest Setting' },
+                    { src: 'images/sabangan3.png', label: 'Sabangan Eco-Camp — Camp Facilities' },
+                ],
+                details: {
+                    location: 'Sabangan, Can-ayan, North Highway District, Malaybalay City',
+                    accessibility: 'Walk from drop-off point is ~20–30 minutes. Trail is moderately steep but manageable, with guides available.',
+                    transportation: '4x4 vehicles provided as part of the tour'
+                }
+            },
+            misty: {
+                title: 'Misty Mountain Eco-Camp',
+                subtitle: 'Misty Mountain Haven, Kibalabag — Highland forest with scenic mountain views',
+                images: [
+                    { src: 'images/misty.png', label: 'Misty Mountain — Overview' },
+                    { src: 'images/misty1.png', label: 'Misty Mountain — Mountain Views' },
+                    { src: 'images/misty2.png', label: 'Misty Mountain — Camp Area' },
+                    { src: 'images/misty3.png', label: 'Misty Mountain — Forest Trails' },
+                ],
+                details: {
+                    location: 'Misty Mountain Haven, Barangay Kibalabag, North Highway District',
+                    accessibility: 'Short walk from parking (~5–10 minutes) to tents and cottages. Terrain is gentle and easy to navigate.',
+                    transportation: '4x4 or high-clearance vehicles provided'
+                }
+            },
+            katihan: {
+                title: 'Katihan Eco-Camp',
+                subtitle: 'Katihan Eco Park, Kibalabag — Lush riverside corridor with serene forest ambience',
+                images: [
+                    { src: 'images/katihan.png', label: 'Katihan Eco Park — Main View' },
+                    { src: 'images/katihan1.png', label: 'Katihan Eco Park — River Area' },
+                    { src: 'images/katihan2.png', label: 'Katihan Eco Park — Forest Setting' },
+                    { src: 'images/katihan3.png', label: 'Katihan Eco Park — Camping Area' },
+                ],
+                details: {
+                    location: 'Katihan Eco Park, Barangay Kibalabag, North Highway District',
+                    accessibility: 'Short walk from drop-off (~10–15 minutes) to camping areas. Trails are manageable with guides available.',
+                    transportation: '4x4 vehicles provided as part of the tour'
+                }
+            }
+        };
+
+        function initGalleryTriggers() {
+            const triggers = document.querySelectorAll('.gallery-trigger');
+            triggers.forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const key = trigger.dataset.gallery;
+                    openGalleryModal(key);
+                });
+            });
+        }
+
+        function openGalleryModal(key) {
+            const modal = document.getElementById('galleryModal');
+            if (!modal || !galleryData[key]) return;
+
+            const data = galleryData[key];
+            document.getElementById('galleryTitle').textContent = data.title;
+            document.getElementById('gallerySubtitle').textContent = data.subtitle;
+
+            const grid = document.getElementById('galleryGrid');
+            let gridHTML = data.images.map(image => `
+                <figure class="gallery-card">
+                    <img src="${image.src}" alt="${image.label}">
+                    <figcaption>${image.label}</figcaption>
+                </figure>
+            `).join('');
+
+            // Add details section for eco-camps
+            if (data.details) {
+                gridHTML += `
+                    <div class="eco-camp-details-panel">
+                        <h4><i class="fas fa-info-circle"></i> Camp Information</h4>
+                        <div class="detail-item">
+                            <strong><i class="fas fa-map-marker-alt"></i> Location:</strong>
+                            <p>${data.details.location}</p>
+                        </div>
+                        <div class="detail-item">
+                            <strong><i class="fas fa-hiking"></i> Accessibility:</strong>
+                            <p>${data.details.accessibility}</p>
+                        </div>
+                        <div class="detail-item">
+                            <strong><i class="fas fa-truck-monster"></i> Transportation:</strong>
+                            <p>${data.details.transportation}</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            grid.innerHTML = gridHTML;
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGalleryModal() {
+            const modal = document.getElementById('galleryModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close gallery clicking overlay
+        document.addEventListener('click', (e) => {
+            const galleryModal = document.getElementById('galleryModal');
+            if (galleryModal && e.target === galleryModal) {
+                closeGalleryModal();
+            }
+        });
+
+        // Initialize gallery triggers when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            initGalleryTriggers();
         });
     </script>
 </body>

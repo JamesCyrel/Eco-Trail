@@ -29,7 +29,8 @@ let currentBooking = {
     day3Activity: null,
     addons: [],
     discountCode: null,
-    discountAmount: 0
+    discountAmount: 0,
+    selectedEcoCamp: null
 };
 
 // ===================================
@@ -171,15 +172,20 @@ function initializeEventListeners() {
                 const addonValue = parseInt(this.value);
                 const addonName = this.name.replace('addon_', '');
                 currentBooking.addons.push({ name: addonName, price: addonValue });
-            } else {
-                card.classList.remove('selected');
-                const addonName = this.name.replace('addon_', '');
-                currentBooking.addons = currentBooking.addons.filter(addon => addon.name !== addonName);
-            }
+        } else {
+            card.classList.remove('selected');
+            const addonName = this.name.replace('addon_', '');
+            currentBooking.addons = currentBooking.addons.filter(addon => addon.name !== addonName);
             
-            updatePriceSummary();
-        });
+            // Clear eco-camp selection if ecocamp addon is unchecked
+            if (addonName === 'ecocamp') {
+                clearEcoCampSelection();
+            }
+        }
+        
+        updatePriceSummary();
     });
+});
 
     // Payment method selection (both regular and modal versions)
     const paymentMethods = document.querySelectorAll('.payment-method, .payment-method-modal');
@@ -208,6 +214,58 @@ function initializeEventListeners() {
     // Form submission
     const bookingForm = document.getElementById('customBookingForm');
     bookingForm.addEventListener('submit', handleFormSubmit);
+
+    // Eco-camp selection
+    setupEcoCampSelection();
+}
+
+function setupEcoCampSelection() {
+    const ecoCampOptions = document.querySelectorAll('.eco-camp-option');
+    const ecoCampInput = document.getElementById('selectedEcoCamp');
+    
+    if (!ecoCampOptions.length) return;
+
+    ecoCampOptions.forEach(option => {
+        const radio = option.querySelector('input[type="radio"]');
+        if (radio) {
+            radio.addEventListener('change', () => {
+                const campId = radio.value;
+                const campName = option.querySelector('h4')?.textContent || campId;
+                
+                if (ecoCampInput) {
+                    ecoCampInput.value = campId;
+                }
+                
+                currentBooking.selectedEcoCamp = {
+                    id: campId,
+                    name: campName
+                };
+                
+                if (typeof showNotification === 'function') {
+                    showNotification(`${campName} selected!`, 'success');
+                }
+            });
+        }
+    });
+}
+
+function clearEcoCampSelection() {
+    const ecoCampOptions = document.querySelectorAll('.eco-camp-option input[type="radio"]');
+    const ecoCampInput = document.getElementById('selectedEcoCamp');
+    
+    ecoCampOptions.forEach(radio => {
+        radio.checked = false;
+    });
+    
+    if (ecoCampInput) {
+        ecoCampInput.value = '';
+    }
+    
+    currentBooking.selectedEcoCamp = null;
+    
+    if (typeof showNotification === 'function') {
+        showNotification('Eco-Camp selection cleared', 'info');
+    }
 }
 
 // ===================================
@@ -456,7 +514,8 @@ function handleFormSubmit(e) {
             discount: calculateDiscount(calculateSubtotal()),
             total: calculateTotal()
         },
-        discountCode: currentBooking.discountCode
+        discountCode: currentBooking.discountCode,
+        ecoCamp: currentBooking.selectedEcoCamp
     };
     
     // Add activity details for custom package
@@ -659,6 +718,12 @@ function showBookingConfirmationModal(bookingData) {
                     <div class="success-detail-item">
                         <span class="success-detail-label">Dietary:</span>
                         <span class="success-detail-value">${bookingData.specialRequests.dietary}</span>
+                    </div>
+                ` : ''}
+                ${bookingData.ecoCamp ? `
+                    <div class="success-detail-item">
+                        <span class="success-detail-label">Eco-Camp:</span>
+                        <span class="success-detail-value">${bookingData.ecoCamp.name}</span>
                     </div>
                 ` : ''}
                 <div class="success-detail-item">
@@ -969,7 +1034,8 @@ function resetBooking() {
         day3Activity: null,
         addons: [],
         discountCode: null,
-        discountAmount: 0
+        discountAmount: 0,
+        selectedEcoCamp: null
     };
     
     // Reset UI

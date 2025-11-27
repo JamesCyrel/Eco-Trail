@@ -12,8 +12,11 @@
     <nav class="navbar" id="navbar">
         <div class="container">
             <div class="nav-brand">
-                <i class="fas fa-mountain"></i>
-                <span>Eco-Trail</span>
+                <img src="images/logo.png" alt="North Highway District Eco-Trail logo" class="nav-logo">
+                <div class="nav-brand-text">
+                    <span class="brand-title">Eco-Trail</span>
+                    <span class="brand-subtitle">North Highway District</span>
+                </div>
             </div>
             <div class="nav-toggle" id="navToggle">
                 <span></span>
@@ -112,10 +115,11 @@
                         <i class="fas fa-tree"></i>
                         <span>Tagoloan Headwaters</span>
                     </div>
-                    <div class="image-placeholder">
+                    <button class="image-placeholder gallery-trigger" data-gallery="ecocamps" aria-label="View Eco-Camp previews">
                         <i class="fas fa-campground"></i>
-                        <span>Eco-Camp</span>
-                    </div>
+                        <span>Eco-Camp Preview</span>
+                        <span class="image-hint">Tap to preview all camps</span>
+                    </button>
                 </div>
                 <div class="day-details">
                     <div class="itinerary-block">
@@ -144,9 +148,9 @@
                         <h3><i class="fas fa-cloud-sun"></i> Afternoon Activities</h3>
                         <div class="activity-detail">
                             <h4><i class="fas fa-campground"></i> Optional Eco-Camp Experience</h4>
-                            <p><strong>Location:</strong> Eco-camp near the river, with breathtaking views of the forest.</p>
-                            <p><strong>Accessibility:</strong> The camp is located on a hill that requires a short, 10-minute walk from the drop-off point. The terrain is moderately steep but manageable for most individuals. Guides will be available to assist.</p>
-                            <p><strong>Transportation:</strong> Transportation to the camp will be provided via 4x4 vehicles, as access roads are rough and require sturdy vehicles.</p>
+                            <p><strong>Location:</strong> Eco-camp near the river or in the forest, offering breathtaking natural views.</p>
+                            <p><strong>Accessibility:</strong> Camps are generally a short to moderate walk from the drop-off point. Trails can be moderately steep but manageable for most visitors, with guides available to assist.</p>
+                            <p><strong>Transportation:</strong> Transportation to the camp is provided via 4x4 vehicles, as access roads are rough and require sturdy vehicles.</p>
                         </div>
                     </div>
                     <div class="inclusions">
@@ -481,7 +485,13 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3><i class="fas fa-mountain"></i> Eco-Trail</h3>
+                    <div class="footer-brand">
+                        <img src="images/logo.png" alt="North Highway District Eco-Trail logo" class="footer-logo">
+                        <div>
+                            <h3>Eco-Trail</h3>
+                            <p class="footer-tagline">North Highway District</p>
+                        </div>
+                    </div>
                     <p>Experience sustainable tourism in the beautiful North Highway District of Malaybalay City, Bukidnon.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -673,6 +683,92 @@
                     { src: 'images/kinapuntan3.png', label: 'Kinapuntan Falls — Highland Approach' },
                     { src: 'images/kinapuntan2.png', label: 'Kinapuntan Falls — River Rocks Close-up' },
                 ]
+            },
+            ecocamps: {
+                title: 'Choose Your Eco-Camp',
+                subtitle: 'Three unique eco-camp experiences in the North Highway District',
+                images: [
+                    // Sabangan Eco-Camp
+                    { src: 'images/sabangan.png', label: 'Sabangan Eco-Camp — Riverfront Setting', camp: 'Sabangan' },
+                    { src: 'images/sabangan1.png', label: 'Sabangan — Riverside View', camp: 'Sabangan' },
+                    { src: 'images/sabangan2.png', label: 'Sabangan — Forest Surroundings', camp: 'Sabangan' },
+                    { src: 'images/sabangan3.png', label: 'Sabangan — Camp Facilities', camp: 'Sabangan' },
+                    // Misty Mountain Eco-Camp
+                    { src: 'images/misty.png', label: 'Misty Mountain — Highland Overview', camp: 'Misty Mountain' },
+                    { src: 'images/misty1.png', label: 'Misty Mountain — Mountain Views', camp: 'Misty Mountain' },
+                    { src: 'images/misty2.png', label: 'Misty Mountain — Camp Area', camp: 'Misty Mountain' },
+                    { src: 'images/misty3.png', label: 'Misty Mountain — Forest Trails', camp: 'Misty Mountain' },
+                    // Katihan Eco-Camp
+                    { src: 'images/katihan.png', label: 'Katihan — Eco Park Main View', camp: 'Katihan' },
+                    { src: 'images/katihan1.png', label: 'Katihan — River Corridor', camp: 'Katihan' },
+                    { src: 'images/katihan2.png', label: 'Katihan — Forest Setting', camp: 'Katihan' },
+                    { src: 'images/katihan3.png', label: 'Katihan — Camping Area', camp: 'Katihan' },
+                ],
+                campDetails: [
+                    {
+                        name: 'Sabangan Eco-Camp',
+                        location: 'Sabangan, Can-ayan, North Highway District, Malaybalay City — Riverfront camping surrounded by forested hills',
+                        accessibility: 'Walk from drop-off point is ~20–30 minutes. Trail is moderately steep but manageable, with guides available.',
+                        transportation: '4x4 vehicles provided as part of the tour'
+                    },
+                    {
+                        name: 'Misty Mountain Eco-Camp',
+                        location: 'Misty Mountain Haven, Barangay Kibalabag, North Highway District — Highland forest with scenic mountain views',
+                        accessibility: 'Short walk from parking (~5–10 minutes) to tents and cottages. Terrain is gentle and easy to navigate.',
+                        transportation: '4x4 or high-clearance vehicles provided'
+                    },
+                    {
+                        name: 'Katihan Eco-Camp',
+                        location: 'Katihan Eco Park, Barangay Kibalabag, North Highway District — Lush riverside corridor with serene forest ambience',
+                        accessibility: 'Short walk from drop-off (~10–15 minutes) to camping areas. Trails are manageable with guides available.',
+                        transportation: '4x4 vehicles provided as part of the tour'
+                    }
+                ]
+            },
+            sabangan: {
+                title: 'Sabangan Eco-Camp',
+                subtitle: 'Sabangan, Can-ayan, Malaybalay City — Riverfront camping surrounded by forested hills',
+                images: [
+                    { src: 'images/sabangan.png', label: 'Sabangan Eco-Camp — Main Area' },
+                    { src: 'images/sabangan1.png', label: 'Sabangan Eco-Camp — Riverside View' },
+                    { src: 'images/sabangan2.png', label: 'Sabangan Eco-Camp — Forest Setting' },
+                    { src: 'images/sabangan3.png', label: 'Sabangan Eco-Camp — Camp Facilities' },
+                ],
+                details: {
+                    location: 'Sabangan, Can-ayan, North Highway District, Malaybalay City',
+                    accessibility: 'Walk from drop-off point is ~20–30 minutes. Trail is moderately steep but manageable, with guides available.',
+                    transportation: '4x4 vehicles provided as part of the tour'
+                }
+            },
+            misty: {
+                title: 'Misty Mountain Eco-Camp',
+                subtitle: 'Misty Mountain Haven, Kibalabag — Highland forest with scenic mountain views',
+                images: [
+                    { src: 'images/misty.png', label: 'Misty Mountain — Overview' },
+                    { src: 'images/misty1.png', label: 'Misty Mountain — Mountain Views' },
+                    { src: 'images/misty2.png', label: 'Misty Mountain — Camp Area' },
+                    { src: 'images/misty3.png', label: 'Misty Mountain — Forest Trails' },
+                ],
+                details: {
+                    location: 'Misty Mountain Haven, Barangay Kibalabag, North Highway District',
+                    accessibility: 'Short walk from parking (~5–10 minutes) to tents and cottages. Terrain is gentle and easy to navigate.',
+                    transportation: '4x4 or high-clearance vehicles provided'
+                }
+            },
+            katihan: {
+                title: 'Katihan Eco-Camp',
+                subtitle: 'Katihan Eco Park, Kibalabag — Lush riverside corridor with serene forest ambience',
+                images: [
+                    { src: 'images/katihan.png', label: 'Katihan Eco Park — Main View' },
+                    { src: 'images/katihan1.png', label: 'Katihan Eco Park — River Area' },
+                    { src: 'images/katihan2.png', label: 'Katihan Eco Park — Forest Setting' },
+                    { src: 'images/katihan3.png', label: 'Katihan Eco Park — Camping Area' },
+                ],
+                details: {
+                    location: 'Katihan Eco Park, Barangay Kibalabag, North Highway District',
+                    accessibility: 'Short walk from drop-off (~10–15 minutes) to camping areas. Trails are manageable with guides available.',
+                    transportation: '4x4 vehicles provided as part of the tour'
+                }
             }
         };
 
@@ -695,12 +791,63 @@
             document.getElementById('gallerySubtitle').textContent = data.subtitle;
 
             const grid = document.getElementById('galleryGrid');
-            grid.innerHTML = data.images.map(image => `
+            let gridHTML = data.images.map(image => `
                 <figure class="gallery-card">
                     <img src="${image.src}" alt="${image.label}">
                     <figcaption>${image.label}</figcaption>
                 </figure>
             `).join('');
+
+            // Add details section for single eco-camp
+            if (data.details) {
+                gridHTML += `
+                    <div class="eco-camp-details-panel">
+                        <h4><i class="fas fa-info-circle"></i> Camp Information</h4>
+                        <div class="detail-item">
+                            <strong><i class="fas fa-map-marker-alt"></i> Location:</strong>
+                            <p>${data.details.location}</p>
+                        </div>
+                        <div class="detail-item">
+                            <strong><i class="fas fa-hiking"></i> Accessibility:</strong>
+                            <p>${data.details.accessibility}</p>
+                        </div>
+                        <div class="detail-item">
+                            <strong><i class="fas fa-truck-monster"></i> Transportation:</strong>
+                            <p>${data.details.transportation}</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Add details section for combined eco-camps view
+            if (data.campDetails) {
+                gridHTML += `
+                    <div class="eco-camp-details-panel" style="grid-column: 1 / -1;">
+                        <h4><i class="fas fa-info-circle"></i> Camp Information</h4>
+                        ${data.campDetails.map(camp => `
+                            <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.2);">
+                                <h5 style="font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                    <i class="fas fa-campground"></i> ${camp.name}
+                                </h5>
+                                <div class="detail-item">
+                                    <strong><i class="fas fa-map-marker-alt"></i> Location:</strong>
+                                    <p>${camp.location}</p>
+                                </div>
+                                <div class="detail-item">
+                                    <strong><i class="fas fa-hiking"></i> Accessibility:</strong>
+                                    <p>${camp.accessibility}</p>
+                                </div>
+                                <div class="detail-item" style="margin-bottom: 0;">
+                                    <strong><i class="fas fa-truck-monster"></i> Transportation:</strong>
+                                    <p>${camp.transportation}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            grid.innerHTML = gridHTML;
 
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
