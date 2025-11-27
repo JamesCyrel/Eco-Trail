@@ -209,66 +209,6 @@
                                 </p>
                             </div>
 
-                            <!-- Café Selection (Optional for Day 3) -->
-                            <div class="form-section" id="cafeSelectionSection">
-                                <div class="form-section-title">
-                                    <i class="fas fa-coffee"></i>
-                                    <h3>Choose Your Preferred Café (Options)</h3>
-                                    <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem; font-weight: normal;">
-                                        For Day 3's café hopping experience, select your preferred café to visit. Preview each café before choosing.
-                                    </p>
-                                </div>
-                                <input type="hidden" id="selectedCafe" name="selectedCafe" value="">
-                                
-                                <div class="eco-camp-selection-grid">
-                                    <label class="cafe-option" data-cafe="fortune">
-                                        <input type="radio" name="cafeChoice" value="fortune">
-                                        <div class="eco-camp-card-content">
-                                            <div class="eco-camp-icon">
-                                                <i class="fas fa-mug-hot"></i>
-                                            </div>
-                                            <h4>Fortune Valley Café</h4>
-                                            <p>Specialty coffee & mountain views</p>
-                                            <button type="button" class="btn-preview gallery-trigger" data-gallery="fortunecafe">
-                                                <i class="fas fa-images"></i> Preview Café
-                                            </button>
-                                        </div>
-                                    </label>
-
-                                    <label class="cafe-option" data-cafe="beanzone">
-                                        <input type="radio" name="cafeChoice" value="beanzone">
-                                        <div class="eco-camp-card-content">
-                                            <div class="eco-camp-icon">
-                                                <i class="fas fa-coffee"></i>
-                                            </div>
-                                            <h4>Bean Zone Café</h4>
-                                            <p>Artisan coffee & cozy ambiance</p>
-                                            <button type="button" class="btn-preview gallery-trigger" data-gallery="beanzonecafe">
-                                                <i class="fas fa-images"></i> Preview Café
-                                            </button>
-                                        </div>
-                                    </label>
-
-                                    <label class="cafe-option" data-cafe="earthsky">
-                                        <input type="radio" name="cafeChoice" value="earthsky">
-                                        <div class="eco-camp-card-content">
-                                            <div class="eco-camp-icon">
-                                                <i class="fas fa-cloud-sun"></i>
-                                            </div>
-                                            <h4>Earth Sky View Café</h4>
-                                            <p>Panoramic views & local snacks</p>
-                                            <button type="button" class="btn-preview gallery-trigger" data-gallery="earthskycafe">
-                                                <i class="fas fa-images"></i> Preview Café
-                                            </button>
-                                        </div>
-                                    </label>
-                                </div>
-
-                                <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 1rem; font-style: italic;">
-                                    <i class="fas fa-info-circle"></i> Note: Café selection is part of Day 3 experience. Transport included in tour package.
-                                </p>
-                            </div>
-
                             <!-- Custom Daily Activities -->
                             <div class="form-section" id="customActivitiesSection" style="display: none;">
                                 <div class="form-section-title">
@@ -771,51 +711,6 @@
                     location: 'Katihan Eco Park, Barangay Kibalabag, North Highway District',
                     accessibility: 'Short walk from drop-off (~10–15 minutes) to camping areas. Trails are manageable with guides available.',
                     transportation: '4x4 vehicles provided as part of the tour'
-                }
-            },
-            fortunecafe: {
-                title: 'Fortune Valley Café',
-                subtitle: 'Barangay Kibalabag — Specialty coffee and light meals with mountain views',
-                images: [
-                    { src: 'images/fortune.png', label: 'Fortune Valley Café — Main Area' },
-                    { src: 'images/fortune1.png', label: 'Fortune Valley — Mountain Views' },
-                    { src: 'images/fortune2.png', label: 'Fortune Valley — Interior' },
-                    { src: 'images/fortune3.png', label: 'Fortune Valley — Dining Area' },
-                ],
-                details: {
-                    location: 'Barangay Kibalabag, North Highway District, Malaybalay City',
-                    accessibility: 'Easily accessible from the main road. No walking required unless guests wish to explore the surrounding area.',
-                    transportation: 'Eco-van transport provided as part of the café hopping tour'
-                }
-            },
-            beanzonecafe: {
-                title: 'Bean Zone Café',
-                subtitle: 'Barangay Kibalabag — Artisan coffee blends and cozy ambiance',
-                images: [
-                    { src: 'images/beanzone.png', label: 'Bean Zone Café — Exterior' },
-                    { src: 'images/beanzone1.png', label: 'Bean Zone — Coffee Bar' },
-                    { src: 'images/beanzone2.png', label: 'Bean Zone — Seating Area' },
-                    { src: 'images/beanzone3.png', label: 'Bean Zone — Cozy Ambiance' },
-                ],
-                details: {
-                    location: 'Barangay Kibalabag, North Highway District, Malaybalay City',
-                    accessibility: 'Short walk from parking area if guests wish to explore the surroundings. Otherwise, fully accessible by vehicle.',
-                    transportation: 'Eco-van transport provided as part of the café hopping tour'
-                }
-            },
-            earthskycafe: {
-                title: 'Earth Sky View Café',
-                subtitle: 'Barangay Imbayao — Panoramic mountain views with coffee and snacks',
-                images: [
-                    { src: 'images/earthsky.png', label: 'Earth Sky View — Panoramic View' },
-                    { src: 'images/earthsky1.png', label: 'Earth Sky View — Outdoor Seating' },
-                    { src: 'images/earthsky2.png', label: 'Earth Sky View — Welcome Sign' },
-                    { src: 'images/earthsky3.png', label: 'Earth Sky View — Scenic Mountain Backdrop' },
-                ],
-                details: {
-                    location: 'Barangay Imbayao, Malaybalay City',
-                    accessibility: 'Easily reached from the drop-off area. Short walk recommended to enjoy the scenery.',
-                    transportation: 'Eco-van transport provided as part of the café hopping tour'
                 }
             }
         };

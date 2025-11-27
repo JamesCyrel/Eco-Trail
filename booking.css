@@ -1404,8 +1404,7 @@
     margin-top: 1.5rem;
 }
 
-.eco-camp-option,
-.cafe-option {
+.eco-camp-option {
     border: 3px solid var(--light-color);
     border-radius: 15px;
     padding: 1.5rem;
@@ -1416,21 +1415,18 @@
     background: var(--white);
 }
 
-.eco-camp-option input[type="radio"],
-.cafe-option input[type="radio"] {
+.eco-camp-option input[type="radio"] {
     position: absolute;
     opacity: 0;
 }
 
-.eco-camp-option:hover,
-.cafe-option:hover {
+.eco-camp-option:hover {
     border-color: var(--secondary-color);
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
 }
 
-.eco-camp-option:has(input[type="radio"]:checked),
-.cafe-option:has(input[type="radio"]:checked) {
+.eco-camp-option:has(input[type="radio"]:checked) {
     border-color: var(--primary-color);
     background: var(--light-color);
     box-shadow: 0 0 0 3px rgba(45, 122, 79, 0.1);

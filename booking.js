@@ -30,8 +30,7 @@ let currentBooking = {
     addons: [],
     discountCode: null,
     discountAmount: 0,
-    selectedEcoCamp: null,
-    selectedCafe: null
+    selectedEcoCamp: null
 };
 
 // ===================================
@@ -218,9 +217,6 @@ function initializeEventListeners() {
 
     // Eco-camp selection
     setupEcoCampSelection();
-
-    // Café selection
-    setupCafeSelection();
 }
 
 function setupEcoCampSelection() {
@@ -269,55 +265,6 @@ function clearEcoCampSelection() {
     
     if (typeof showNotification === 'function') {
         showNotification('Eco-Camp selection cleared', 'info');
-    }
-}
-
-function setupCafeSelection() {
-    const cafeOptions = document.querySelectorAll('.cafe-option');
-    const cafeInput = document.getElementById('selectedCafe');
-    
-    if (!cafeOptions.length) return;
-
-    cafeOptions.forEach(option => {
-        const radio = option.querySelector('input[type="radio"]');
-        if (radio) {
-            radio.addEventListener('change', () => {
-                const cafeId = radio.value;
-                const cafeName = option.querySelector('h4')?.textContent || cafeId;
-                
-                if (cafeInput) {
-                    cafeInput.value = cafeId;
-                }
-                
-                currentBooking.selectedCafe = {
-                    id: cafeId,
-                    name: cafeName
-                };
-                
-                if (typeof showNotification === 'function') {
-                    showNotification(`${cafeName} selected!`, 'success');
-                }
-            });
-        }
-    });
-}
-
-function clearCafeSelection() {
-    const cafeOptions = document.querySelectorAll('.cafe-option input[type="radio"]');
-    const cafeInput = document.getElementById('selectedCafe');
-    
-    cafeOptions.forEach(radio => {
-        radio.checked = false;
-    });
-    
-    if (cafeInput) {
-        cafeInput.value = '';
-    }
-    
-    currentBooking.selectedCafe = null;
-    
-    if (typeof showNotification === 'function') {
-        showNotification('Café selection cleared', 'info');
     }
 }
 
@@ -568,8 +515,7 @@ function handleFormSubmit(e) {
             total: calculateTotal()
         },
         discountCode: currentBooking.discountCode,
-        ecoCamp: currentBooking.selectedEcoCamp,
-        cafe: currentBooking.selectedCafe
+        ecoCamp: currentBooking.selectedEcoCamp
     };
     
     // Add activity details for custom package
@@ -778,12 +724,6 @@ function showBookingConfirmationModal(bookingData) {
                     <div class="success-detail-item">
                         <span class="success-detail-label">Eco-Camp:</span>
                         <span class="success-detail-value">${bookingData.ecoCamp.name}</span>
-                    </div>
-                ` : ''}
-                ${bookingData.cafe ? `
-                    <div class="success-detail-item">
-                        <span class="success-detail-label">Café Choice:</span>
-                        <span class="success-detail-value">${bookingData.cafe.name}</span>
                     </div>
                 ` : ''}
                 <div class="success-detail-item">
@@ -1095,8 +1035,7 @@ function resetBooking() {
         addons: [],
         discountCode: null,
         discountAmount: 0,
-        selectedEcoCamp: null,
-        selectedCafe: null
+        selectedEcoCamp: null
     };
     
     // Reset UI
