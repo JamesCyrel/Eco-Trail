@@ -48,33 +48,45 @@ function handleLogin(e) {
     
     // Simulate API call
     setTimeout(() => {
-        // In a real application, this would make an API call to verify credentials
-        // For demo purposes, we'll simulate successful login
+        // Admin credentials (in real app, this would be verified via API)
+        const adminEmail = 'admin@ecotrail.com';
+        const adminPassword = 'admin123';
+        
+        const isAdmin = email.toLowerCase() === adminEmail.toLowerCase() && password === adminPassword;
         
         // Store user data (in real app, this would come from API)
         const userData = {
             email: email,
             name: email.split('@')[0],
             loggedIn: true,
+            isAdmin: isAdmin,
             loginTime: new Date().toISOString()
         };
         
         if (remember) {
             localStorage.setItem('ecotrail_user', JSON.stringify(userData));
+            if (isAdmin) {
+                localStorage.setItem('ecotrail_admin', 'true');
+            }
         } else {
             sessionStorage.setItem('ecotrail_user', JSON.stringify(userData));
+            if (isAdmin) {
+                sessionStorage.setItem('ecotrail_admin', 'true');
+            }
         }
         
-        showNotification('Login successful! Redirecting...', 'success');
+        showNotification(isAdmin ? 'Admin login successful! Redirecting...' : 'Login successful! Redirecting...', 'success');
         
         // Check if there's a redirect URL stored
         const redirectUrl = sessionStorage.getItem('redirectAfterLogin');
         
-        // Redirect to stored URL or default to index page
+        // Redirect to stored URL, admin dashboard if admin, or default to index page
         setTimeout(() => {
             if (redirectUrl) {
                 sessionStorage.removeItem('redirectAfterLogin');
                 window.location.href = redirectUrl;
+            } else if (isAdmin) {
+                window.location.href = 'admin.html';
             } else {
                 window.location.href = 'index.html';
             }

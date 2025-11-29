@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | North Highway District Eco-Trail</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="images/logo.png" alt="North Highway District Eco-Trail logo" class="nav-logo">
+                <div class="nav-brand-text">
+                    <span class="brand-title">Eco-Trail</span>
+                    <span class="brand-subtitle">North Highway District</span>
+                </div>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li id="adminNavItem">
+                    <a href="admin.html" class="nav-link" style="color: var(--accent-color);"><i class="fas fa-user-shield"></i> Admin</a>
+                    <a href="#" class="nav-link" id="logoutLink" style="display: none; color: #e74c3c;" onclick="handleAdminLogout(event)">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Admin Dashboard Section -->
+    <section class="admin-section" style="padding-top: 120px;">
+        <div class="container">
+            <div class="admin-header">
+                <div class="admin-header-content">
+                    <h1> Admin Dashboard</h1>
+                    <p>Manage bookings and view tour reservations</p>
+                </div>
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(76, 175, 80, 0.1); color: #4caf50;">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalBookings">12</h3>
+                            <p>Total Bookings</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(33, 150, 243, 0.1); color: #2196f3;">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalGuests">48</h3>
+                            <p>Total Guests</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(255, 152, 0, 0.1); color: #ff9800;">
+                            <i class="fas fa-peso-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>₱216,000</h3>
+                            <p>Total Revenue</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(156, 39, 176, 0.1); color: #9c27b0;">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>8</h3>
+                            <p>Full Packages</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters and Search -->
+            <div class="admin-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search by name, email, or booking ID...">
+                </div>
+                <div class="filter-group">
+                    <select id="packageFilter" class="filter-select">
+                        <option value="all">All Packages</option>
+                        <option value="full">Full 3-Day Package</option>
+                        <option value="custom">Custom Selection</option>
+                    </select>
+                    <select id="statusFilter" class="filter-select">
+                        <option value="all">All Status</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="pending">Pending</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Bookings Table -->
+            <div class="bookings-container">
+                <div class="bookings-table-wrapper">
+                    <table class="bookings-table">
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Guest Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Package</th>
+                                <th>Tour Dates</th>
+                                <th>Guests</th>
+                                <th>Total Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookingsTableBody">
+                            <!-- Bookings will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Booking Details Modal -->
+            <div id="bookingDetailsModal" class="modal-overlay" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2><i class="fas fa-file-invoice"></i> Booking Details</h2>
+                        <button class="modal-close" onclick="closeBookingModal()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="bookingDetailsContent">
+                        <!-- Details will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="images/logo.png" alt="North Highway District Eco-Trail logo" class="footer-logo">
+                        <div>
+                            <h3>Eco-Trail</h3>
+                            <p class="footer-tagline">North Highway District</p>
+                        </div>
+                    </div>
+                    <p>Experience sustainable tourism in the beautiful North Highway District of Malaybalay City, Bukidnon.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61584566633427&mibextid=LQQJ4d&rdid=xDWzE3Utj6yDy8AS&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16c5kcEzj7%2F%3Fmibextid%3DLQQJ4d#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="admin.html">Admin Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> North Highway District, Malaybalay City, Bukidnon</li>
+                        <li><i class="fas fa-phone"></i> +63 912 345 6789</li>
+                        <li><i class="fas fa-envelope"></i> info@ecotrail-bukidnon.ph</li>
+                        <li><i class="fas fa-clock"></i> Mon - Sun: 8:00 AM - 6:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 North Highway District Eco-Trail. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+    <script>
+        // Check admin authentication
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAdminAuth();
+        });
+
+        function checkAdminAuth() {
+            const localAdmin = localStorage.getItem('ecotrail_admin');
+            const sessionAdmin = sessionStorage.getItem('ecotrail_admin');
+            const localUser = localStorage.getItem('ecotrail_user');
+            const sessionUser = sessionStorage.getItem('ecotrail_user');
+            
+            const isAdmin = localAdmin === 'true' || sessionAdmin === 'true';
+            const userDataString = localUser || sessionUser;
+            
+            if (userDataString) {
+                try {
+                    const userData = JSON.parse(userDataString);
+                    if (userData.isAdmin || isAdmin) {
+                        // Admin is logged in, show logout button
+                        document.getElementById('logoutLink').style.display = 'block';
+                        return;
+                    }
+                } catch (e) {
+                    console.error('Error parsing user data:', e);
+                }
+            }
+            
+            // Not admin or not logged in, redirect to login
+            if (typeof showNotification === 'function') {
+                showNotification('Admin access required. Please login as admin.', 'error');
+            }
+            
+            sessionStorage.setItem('redirectAfterLogin', 'admin.html');
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1500);
+        }
+
+        function handleAdminLogout(event) {
+            event.preventDefault();
+            
+            // Show confirmation
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('ecotrail_user');
+                sessionStorage.removeItem('ecotrail_user');
+                localStorage.removeItem('ecotrail_admin');
+                sessionStorage.removeItem('ecotrail_admin');
+                
+                if (typeof showNotification === 'function') {
+                    showNotification('Logged out successfully', 'success');
+                }
+                
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+</html>
+
