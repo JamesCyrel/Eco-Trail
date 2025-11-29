@@ -30,7 +30,8 @@ let currentBooking = {
     addons: [],
     discountCode: null,
     discountAmount: 0,
-    selectedEcoCamp: null
+    selectedEcoCamp: null,
+    selectedSunsetView: null
 };
 
 // ===================================
@@ -217,6 +218,9 @@ function initializeEventListeners() {
 
     // Eco-camp selection
     setupEcoCampSelection();
+
+    // Sunset view selection
+    setupSunsetViewSelection();
 }
 
 function setupEcoCampSelection() {
@@ -265,6 +269,55 @@ function clearEcoCampSelection() {
     
     if (typeof showNotification === 'function') {
         showNotification('Eco-Camp selection cleared', 'info');
+    }
+}
+
+function setupSunsetViewSelection() {
+    const sunsetViewOptions = document.querySelectorAll('.sunset-view-option');
+    const sunsetViewInput = document.getElementById('selectedSunsetView');
+    
+    if (!sunsetViewOptions.length) return;
+
+    sunsetViewOptions.forEach(option => {
+        const radio = option.querySelector('input[type="radio"]');
+        if (radio) {
+            radio.addEventListener('change', () => {
+                const viewId = radio.value;
+                const viewName = option.querySelector('h4')?.textContent || viewId;
+                
+                if (sunsetViewInput) {
+                    sunsetViewInput.value = viewId;
+                }
+                
+                currentBooking.selectedSunsetView = {
+                    id: viewId,
+                    name: viewName
+                };
+                
+                if (typeof showNotification === 'function') {
+                    showNotification(`${viewName} selected!`, 'success');
+                }
+            });
+        }
+    });
+}
+
+function clearSunsetViewSelection() {
+    const sunsetViewOptions = document.querySelectorAll('.sunset-view-option input[type="radio"]');
+    const sunsetViewInput = document.getElementById('selectedSunsetView');
+    
+    sunsetViewOptions.forEach(radio => {
+        radio.checked = false;
+    });
+    
+    if (sunsetViewInput) {
+        sunsetViewInput.value = '';
+    }
+    
+    currentBooking.selectedSunsetView = null;
+    
+    if (typeof showNotification === 'function') {
+        showNotification('Sunset view selection cleared', 'info');
     }
 }
 
@@ -515,7 +568,8 @@ function handleFormSubmit(e) {
             total: calculateTotal()
         },
         discountCode: currentBooking.discountCode,
-        ecoCamp: currentBooking.selectedEcoCamp
+        ecoCamp: currentBooking.selectedEcoCamp,
+        sunsetView: currentBooking.selectedSunsetView
     };
     
     // Add activity details for custom package
@@ -724,6 +778,12 @@ function showBookingConfirmationModal(bookingData) {
                     <div class="success-detail-item">
                         <span class="success-detail-label">Eco-Camp:</span>
                         <span class="success-detail-value">${bookingData.ecoCamp.name}</span>
+                    </div>
+                ` : ''}
+                ${bookingData.sunsetView ? `
+                    <div class="success-detail-item">
+                        <span class="success-detail-label">Sunset View:</span>
+                        <span class="success-detail-value">${bookingData.sunsetView.name}</span>
                     </div>
                 ` : ''}
                 <div class="success-detail-item">
@@ -1035,7 +1095,8 @@ function resetBooking() {
         addons: [],
         discountCode: null,
         discountAmount: 0,
-        selectedEcoCamp: null
+        selectedEcoCamp: null,
+        selectedSunsetView: null
     };
     
     // Reset UI

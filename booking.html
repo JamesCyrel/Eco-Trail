@@ -153,7 +153,7 @@
                             <div class="form-section" id="ecoCampSelectionSection">
                                 <div class="form-section-title">
                                     <i class="fas fa-campground"></i>
-                                    <h3>Choose Your Eco-Camp (Options)</h3>
+                                    <h3>Choose Your Eco-Camp (Day 1)</h3>
                                     <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem; font-weight: normal;">
                                         If you added the Eco-Camp Experience, choose your preferred camp location. You can also preview each camp before selecting.
                                     </p>
@@ -206,6 +206,52 @@
 
                                 <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 1rem; font-style: italic;">
                                     <i class="fas fa-info-circle"></i> Note: Eco-camp selection is included when you check the "Eco-Camp Experience" add-on. No additional cost.
+                                </p>
+                            </div>
+
+                            <!-- Sunset View Selection (for Day 3) -->
+                            <div class="form-section" id="sunsetViewSelectionSection">
+                                <div class="form-section-title">
+                                    <i class="fas fa-sun"></i>
+                                    <h3>Choose Your Sunset View Spot (Day 3)</h3>
+                                    <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem; font-weight: normal;">
+                                        Select your preferred sunset viewing location for Day 3. Preview each location before choosing.
+                                    </p>
+                                </div>
+                                <input type="hidden" id="selectedSunsetView" name="selectedSunsetView" value="">
+                                
+                                <div class="eco-camp-selection-grid">
+                                    <label class="sunset-view-option" data-view="canayan">
+                                        <input type="radio" name="sunsetViewChoice" value="canayan">
+                                        <div class="eco-camp-card-content">
+                                            <div class="eco-camp-icon">
+                                                <i class="fas fa-mountain"></i>
+                                            </div>
+                                            <h4>Can-ayan View Deck</h4>
+                                            <p>Community-managed scenic viewpoint</p>
+                                            <button type="button" class="btn-preview gallery-trigger" data-gallery="canayan">
+                                                <i class="fas fa-images"></i> Preview Location
+                                            </button>
+                                        </div>
+                                    </label>
+
+                                    <label class="sunset-view-option" data-view="earthsky">
+                                        <input type="radio" name="sunsetViewChoice" value="earthsky">
+                                        <div class="eco-camp-card-content">
+                                            <div class="eco-camp-icon">
+                                                <i class="fas fa-cloud-sun"></i>
+                                            </div>
+                                            <h4>Earth Sky View</h4>
+                                            <p>Hilltop resort with infinity pool</p>
+                                            <button type="button" class="btn-preview gallery-trigger" data-gallery="earthskyview">
+                                                <i class="fas fa-images"></i> Preview Location
+                                            </button>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 1rem; font-style: italic;">
+                                    <i class="fas fa-info-circle"></i> Note: Sunset view selection is part of Day 3 experience. Transport included in tour package.
                                 </p>
                             </div>
 
@@ -665,22 +711,52 @@
         });
 
         // ================================
-        // Gallery Modal Logic for Eco-Camps
+        // Gallery Modal Logic for Eco-Camps and Sunset Views
         // ================================
         const galleryData = {
             sabangan: {
                 title: 'Sabangan Eco-Camp',
                 subtitle: 'Sabangan, Can-ayan, Malaybalay City — Riverfront camping surrounded by forested hills',
                 images: [
-                    { src: 'images/sabangan.png', label: 'Sabangan Eco-Camp — Main Area' },
+                    { src: 'images/sabangan4.png', label: 'Sabangan Eco-Camp — Main Area' },
                     { src: 'images/sabangan1.png', label: 'Sabangan Eco-Camp — Riverside View' },
                     { src: 'images/sabangan2.png', label: 'Sabangan Eco-Camp — Forest Setting' },
-                    { src: 'images/sabangan3.png', label: 'Sabangan Eco-Camp — Camp Facilities' },
+                    { src: 'images/sabangan5.png', label: 'Sabangan Eco-Camp — Camp Facilities' },
                 ],
                 details: {
                     location: 'Sabangan, Can-ayan, North Highway District, Malaybalay City',
                     accessibility: 'Walk from drop-off point is ~20–30 minutes. Trail is moderately steep but manageable, with guides available.',
                     transportation: '4x4 vehicles provided as part of the tour'
+                }
+            },
+            canayan: {
+                title: 'Can-ayan View Deck',
+                subtitle: 'Community-managed scenic viewpoint in Barangay Can-ayan',
+                images: [
+                    { src: 'images/sunset-viewing.png', label: 'Can-ayan View Deck — Mountain panorama' },
+                    { src: 'images/sunset-viewing1.png', label: 'Cloud sea over the highlands' },
+                    { src: 'images/sunset-viewing2.png', label: 'View deck facing distant peaks' },
+                    { src: 'images/sunset-viewing3.png', label: 'Pine-framed ridge walkway' },
+                ],
+                details: {
+                    location: 'Can-ayan View Deck, Barangay Can-ayan, North Highway District',
+                    accessibility: 'Short 5–10 minute walk from the designated drop-off area. Moderately easy trail with constructed platform and basic rails.',
+                    transportation: '4x4 or high-clearance vehicle provided due to rough access roads'
+                }
+            },
+            earthskyview: {
+                title: 'Earth Sky View',
+                subtitle: 'Hilltop resort with infinity pool and panoramic mountain views',
+                images: [
+                    { src: 'images/earthsky.png', label: 'Earth Sky View — Panoramic View' },
+                    { src: 'images/earthsky1.png', label: 'Earth Sky View — Outdoor Seating' },
+                    { src: 'images/earthsky2.png', label: 'Earth Sky View — Welcome Sign' },
+                    { src: 'images/earthsky3.png', label: 'Earth Sky View — Scenic Mountain Backdrop' },
+                ],
+                details: {
+                    location: 'Earth Sky View Resort, North Highway District',
+                    accessibility: 'Easily accessible with villa and infinity pool viewpoints. Well-maintained grounds suitable for all visitors.',
+                    transportation: 'Standard eco-van transport provided'
                 }
             },
             misty: {
