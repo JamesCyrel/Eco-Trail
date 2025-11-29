@@ -208,6 +208,52 @@
                                     <i class="fas fa-info-circle"></i> Note: Eco-camp selection is included when you check the "Eco-Camp Experience" add-on. No additional cost.
                                 </p>
                             </div>
+                            
+                            <!-- Farm Visit Selection (for Day 2) -->
+                            <div class="form-section" id="farmVisitSelectionSection">
+                                <div class="form-section-title">
+                                    <i class="fas fa-tractor"></i>
+                                    <h3>Choose Your Farm Visit (Day 2)</h3>
+                                    <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem; font-weight: normal;">
+                                        Select your preferred farm for the Day 2 cultural experience. Preview each farm before choosing.
+                                    </p>
+                                </div>
+                                <input type="hidden" id="selectedFarmVisit" name="selectedFarmVisit" value="">
+                                
+                                <div class="eco-camp-selection-grid">
+                                    <label class="sunset-view-option" data-farm="kitanglad">
+                                        <input type="radio" name="farmVisitChoice" value="kitanglad">
+                                        <div class="eco-camp-card-content">
+                                            <div class="eco-camp-icon">
+                                                <i class="fas fa-mountain"></i>
+                                            </div>
+                                            <h4>Mt. Kitanglad Agri-Tourism Farm</h4>
+                                            <p>Imbayao, Malaybalay City</p>
+                                            <button type="button" class="btn-preview gallery-trigger" data-gallery="kitangladfarm">
+                                                <i class="fas fa-images"></i> Preview Farm
+                                            </button>
+                                        </div>
+                                    </label>
+
+                                    <label class="sunset-view-option" data-farm="candiisan">
+                                        <input type="radio" name="farmVisitChoice" value="candiisan">
+                                        <div class="eco-camp-card-content">
+                                            <div class="eco-camp-icon">
+                                                <i class="fas fa-seedling"></i>
+                                            </div>
+                                            <h4>Candiisan Diversified Farm</h4>
+                                            <p>Sitio Candi-Isan, Can-ayan</p>
+                                            <button type="button" class="btn-preview gallery-trigger" data-gallery="candiisanfarm">
+                                                <i class="fas fa-images"></i> Preview Farm
+                                            </button>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 1rem; font-style: italic;">
+                                    <i class="fas fa-info-circle"></i> Note: Farm visit is part of Day 2 cultural experience. Transport and guided tour included.
+                                </p>
+                            </div>
 
                             <!-- Sunset View Selection (for Day 3) -->
                             <div class="form-section" id="sunsetViewSelectionSection">
@@ -252,6 +298,66 @@
 
                                 <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 1rem; font-style: italic;">
                                     <i class="fas fa-info-circle"></i> Note: Sunset view selection is part of Day 3 experience. Transport included in tour package.
+                                </p>
+                            </div>
+
+                            <!-- Resort Selection (for Day 3) -->
+                            <div class="form-section" id="resortSelectionSection">
+                                <div class="form-section-title">
+                                    <i class="fas fa-hotel"></i>
+                                    <h3>Choose Your Resort (Day 3)</h3>
+                                    <p style="color: var(--text-light); font-size: 0.95rem; margin-top: 0.5rem; font-weight: normal;">
+                                        Select your preferred resort for the Day 3 man-made attractions. Preview each resort before choosing.
+                                    </p>
+                                </div>
+                                <input type="hidden" id="selectedResort" name="selectedResort" value="">
+                                
+                                <div class="eco-camp-selection-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                                    <label class="sunset-view-option" data-resort="tribu">
+                                        <input type="radio" name="resortChoice" value="tribu">
+                                        <div class="eco-camp-card-content">
+                                            <div class="eco-camp-icon">
+                                                <i class="fas fa-home"></i>
+                                            </div>
+                                            <h4>Tribu Cabin</h4>
+                                            <p>Can-ayan, North Highway District</p>
+                                            <button type="button" class="btn-preview gallery-trigger" data-gallery="triburesort">
+                                                <i class="fas fa-images"></i> Preview Resort
+                                            </button>
+                                        </div>
+                                    </label>
+
+                                    <label class="sunset-view-option" data-resort="ohana">
+                                        <input type="radio" name="resortChoice" value="ohana">
+                                        <div class="eco-camp-card-content">
+                                            <div class="eco-camp-icon">
+                                                <i class="fas fa-umbrella-beach"></i>
+                                            </div>
+                                            <h4>Ohana Resort</h4>
+                                            <p>Sumpong, Malaybalay City</p>
+                                            <button type="button" class="btn-preview gallery-trigger" data-gallery="ohanaresort">
+                                                <i class="fas fa-images"></i> Preview Resort
+                                            </button>
+                                        </div>
+                                    </label>
+
+                                    <label class="sunset-view-option" data-resort="casadevera">
+                                        <input type="radio" name="resortChoice" value="casadevera">
+                                        <div class="eco-camp-card-content">
+                                            <div class="eco-camp-icon">
+                                                <i class="fas fa-swimming-pool"></i>
+                                            </div>
+                                            <h4>Casa de Vera Resort</h4>
+                                            <p>Kalasungay, North Highway District</p>
+                                            <button type="button" class="btn-preview gallery-trigger" data-gallery="casaresort">
+                                                <i class="fas fa-images"></i> Preview Resort
+                                            </button>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 1rem; font-style: italic;">
+                                    <i class="fas fa-info-circle"></i> Note: Resort visit is part of Day 3 experience. Transport included in tour package.
                                 </p>
                             </div>
 
@@ -787,6 +893,81 @@
                     location: 'Katihan Eco Park, Barangay Kibalabag, North Highway District',
                     accessibility: 'Short walk from drop-off (~10–15 minutes) to camping areas. Trails are manageable with guides available.',
                     transportation: '4x4 vehicles provided as part of the tour'
+                }
+            },
+            kitangladfarm: {
+                title: 'Mt. Kitanglad Agri-Tourism Farm',
+                subtitle: 'Imbayao, Malaybalay City — Agricultural tours with garden and view decks',
+                images: [
+                    { src: 'images/Kitanglad.png', label: 'Mt. Kitanglad Farm — Main Entrance' },
+                    { src: 'images/Kitanglad1.png', label: 'Mt. Kitanglad — Farm Overview' },
+                    { src: 'images/Kitanglad2.png', label: 'Mt. Kitanglad — Cabbage Fields' },
+                    { src: 'images/Kitanglad3.png', label: 'Mt. Kitanglad — Farm Signage' },
+                ],
+                details: {
+                    location: 'Imbayao, Malaybalay City',
+                    accessibility: 'The farm includes uphill and uneven pathways, with some areas requiring light to moderate walking. Trails may be slippery after rain, so proper footwear is recommended. Not all parts are accessible for guests with mobility issues.',
+                    transportation: 'Guests will be transported via eco-van up to the main entrance area. The tour will be guided by farm staff and may include short walks around the gardens and view decks.'
+                }
+            },
+            candiisanfarm: {
+                title: 'Candiisan Diversified Farm',
+                subtitle: 'Sitio Candi-Isan, Barangay Can-ayan, Malaybalay City — Diversified farming with vegetable plots',
+                images: [
+                    { src: 'images/Candiisan.png', label: 'Candiisan Farm — Entrance' },
+                    { src: 'images/Candiisan1.png', label: 'Candiisan — Farm Structures' },
+                    { src: 'images/Candiisan2.png', label: 'Candiisan — Farm Landscape' },
+                    { src: 'images/Candiisan3.png', label: 'Candiisan — Farm View' },
+                ],
+                details: {
+                    location: 'Sitio Candi-Isan, Barangay Can-ayan, Malaybalay City',
+                    accessibility: 'The tour involves walking through vegetable plots, fruit trees, and cacao or coconut areas. The ground may be uneven and muddy after rain. Suitable for light walking but may not be ideal for those with mobility limitations.',
+                    transportation: 'Eco-van will drop guests at the farm\'s access point. A guided tour will be provided by farm staff as visitors walk through the different sections of the diversified farm.'
+                }
+            },
+            triburesort: {
+                title: 'Tribu Cabin',
+                subtitle: 'Barangay Can‑ayan, North Highway District — Cabin-style lodging with mountain views',
+                images: [
+                    { src: 'images/tribu.png', label: 'Tribu Cabin — Welcome Area' },
+                    { src: 'images/tribu1.png', label: 'Tribu Cabin — Mountain Views' },
+                    { src: 'images/tribu2.png', label: 'Tribu Cabin — Cabin Facilities' },
+                    { src: 'images/tribu3.png', label: 'Tribu Cabin — Scenic Setting' },
+                ],
+                details: {
+                    location: 'Barangay Can‑ayan, North Highway District, Malaybalay City',
+                    accessibility: 'The resort offers cabin‑style lodging with mountain views. Terrain around the cabins is mostly level, but some walking on gravel paths may be required. Not all areas are fully accessible for guests with mobility issues.',
+                    transportation: 'Roads leading to the resort are generally passable by eco‑van, but may become rough or muddy after heavy rain. Eco‑van service will be provided when conditions allow; otherwise, alternative transport may be necessary.'
+                }
+            },
+            ohanaresort: {
+                title: 'Ohana Resort',
+                subtitle: 'Barangay Sumpong, Malaybalay City — Pool resort with tropical atmosphere',
+                images: [
+                    { src: 'images/ohana.png', label: 'Ohana Resort — Pool Area' },
+                    { src: 'images/ohana1.png', label: 'Ohana Resort — Tropical Mural' },
+                    { src: 'images/ohana2.png', label: 'Ohana Resort — Pool Features' },
+                    { src: 'images/ohana3.png', label: 'Ohana Resort — Resort Grounds' },
+                ],
+                details: {
+                    location: 'Barangay Sumpong, Malaybalay City',
+                    accessibility: 'Features huts/rooms and a small pool. Terrain is mostly flat and easily walkable. Some resort areas may not be fully accessible for guests with mobility limitations.',
+                    transportation: 'Roads are generally passable by eco‑van, but conditions should be checked ahead of time. Eco‑van service will be provided if roads are safe; otherwise, guests may need alternative transport.'
+                }
+            },
+            casaresort: {
+                title: 'Casa de Vera Resort',
+                subtitle: 'Barangay Kalasungay, North Highway District — Villas and cottages with pool',
+                images: [
+                    { src: 'images/casa.png', label: 'Casa de Vera — Entrance Sign' },
+                    { src: 'images/casa1.png', label: 'Casa de Vera — Pool Area' },
+                    { src: 'images/casa2.png', label: 'Casa de Vera — Resort Facilities' },
+                    { src: 'images/casa3.png', label: 'Casa de Vera — Villa Views' },
+                ],
+                details: {
+                    location: 'Barangay Kalasungay, North Highway District, Malaybalay City',
+                    accessibility: 'Offers villas, cottages, and a pool. Paths and resort grounds are mostly level and easy to walk. Some areas may require light walking.',
+                    transportation: 'Roads are generally suitable for eco‑van, but may be affected by rain or maintenance. Eco‑van service will be provided if passable; otherwise, alternative transport may be arranged.'
                 }
             }
         };

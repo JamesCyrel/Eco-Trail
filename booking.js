@@ -31,7 +31,9 @@ let currentBooking = {
     discountCode: null,
     discountAmount: 0,
     selectedEcoCamp: null,
-    selectedSunsetView: null
+    selectedSunsetView: null,
+    selectedFarmVisit: null,
+    selectedResort: null
 };
 
 // ===================================
@@ -221,6 +223,12 @@ function initializeEventListeners() {
 
     // Sunset view selection
     setupSunsetViewSelection();
+    
+    // Farm visit selection
+    setupFarmVisitSelection();
+    
+    // Resort selection
+    setupResortSelection();
 }
 
 function setupEcoCampSelection() {
@@ -318,6 +326,118 @@ function clearSunsetViewSelection() {
     
     if (typeof showNotification === 'function') {
         showNotification('Sunset view selection cleared', 'info');
+    }
+}
+
+// ===================================
+// FARM VISIT SELECTION
+// ===================================
+
+function setupFarmVisitSelection() {
+    const farmVisitOptions = document.querySelectorAll('.sunset-view-option[data-farm]');
+    const farmVisitInput = document.getElementById('selectedFarmVisit');
+    
+    if (!farmVisitOptions.length) return;
+    
+    farmVisitOptions.forEach(option => {
+        option.addEventListener('click', (e) => {
+            if (e.target.closest('.btn-preview')) return;
+            
+            const radio = option.querySelector('input[type="radio"]');
+            if (radio) {
+                radio.checked = true;
+                const farmId = option.dataset.farm;
+                const farmName = option.querySelector('h4').textContent;
+                
+                if (farmVisitInput) {
+                    farmVisitInput.value = farmId;
+                }
+                
+                currentBooking.selectedFarmVisit = {
+                    id: farmId,
+                    name: farmName
+                };
+                
+                if (typeof showNotification === 'function') {
+                    showNotification(`${farmName} selected for farm visit`, 'success');
+                }
+            }
+        });
+    });
+}
+
+function clearFarmVisitSelection() {
+    const farmVisitOptions = document.querySelectorAll('.sunset-view-option[data-farm] input[type="radio"]');
+    const farmVisitInput = document.getElementById('selectedFarmVisit');
+    
+    farmVisitOptions.forEach(radio => {
+        radio.checked = false;
+    });
+    
+    if (farmVisitInput) {
+        farmVisitInput.value = '';
+    }
+    
+    currentBooking.selectedFarmVisit = null;
+    
+    if (typeof showNotification === 'function') {
+        showNotification('Farm visit selection cleared', 'info');
+    }
+}
+
+// ===================================
+// RESORT SELECTION
+// ===================================
+
+function setupResortSelection() {
+    const resortOptions = document.querySelectorAll('.sunset-view-option[data-resort]');
+    const resortInput = document.getElementById('selectedResort');
+    
+    if (!resortOptions.length) return;
+    
+    resortOptions.forEach(option => {
+        option.addEventListener('click', (e) => {
+            if (e.target.closest('.btn-preview')) return;
+            
+            const radio = option.querySelector('input[type="radio"]');
+            if (radio) {
+                radio.checked = true;
+                const resortId = option.dataset.resort;
+                const resortName = option.querySelector('h4').textContent;
+                
+                if (resortInput) {
+                    resortInput.value = resortId;
+                }
+                
+                currentBooking.selectedResort = {
+                    id: resortId,
+                    name: resortName
+                };
+                
+                if (typeof showNotification === 'function') {
+                    showNotification(`${resortName} selected`, 'success');
+                }
+            }
+        });
+    });
+}
+
+function clearResortSelection() {
+    const resortOptions = document.querySelectorAll('.sunset-view-option[data-resort] input[type="radio"]');
+    const resortInput = document.getElementById('selectedResort');
+    
+    resortOptions.forEach(radio => {
+        radio.checked = false;
+    });
+    
+    if (resortInput) {
+        resortInput.value = '';
+    }
+    
+    currentBooking.selectedResort = null;
+    
+    if (typeof showNotification === 'function') {
+        showNotification('Resort selection cleared', 'info');
     }
 }
 
@@ -569,7 +689,9 @@ function handleFormSubmit(e) {
         },
         discountCode: currentBooking.discountCode,
         ecoCamp: currentBooking.selectedEcoCamp,
-        sunsetView: currentBooking.selectedSunsetView
+        sunsetView: currentBooking.selectedSunsetView,
+        farmVisit: currentBooking.selectedFarmVisit,
+        resort: currentBooking.selectedResort
     };
     
     // Add activity details for custom package
@@ -784,6 +906,18 @@ function showBookingConfirmationModal(bookingData) {
                     <div class="success-detail-item">
                         <span class="success-detail-label">Sunset View:</span>
                         <span class="success-detail-value">${bookingData.sunsetView.name}</span>
+                    </div>
+                ` : ''}
+                ${bookingData.farmVisit ? `
+                    <div class="success-detail-item">
+                        <span class="success-detail-label">Farm Visit:</span>
+                        <span class="success-detail-value">${bookingData.farmVisit.name}</span>
+                    </div>
+                ` : ''}
+                ${bookingData.resort ? `
+                    <div class="success-detail-item">
+                        <span class="success-detail-label">Resort:</span>
+                        <span class="success-detail-value">${bookingData.resort.name}</span>
                     </div>
                 ` : ''}
                 <div class="success-detail-item">
@@ -1096,7 +1230,9 @@ function resetBooking() {
         discountCode: null,
         discountAmount: 0,
         selectedEcoCamp: null,
-        selectedSunsetView: null
+        selectedSunsetView: null,
+        selectedFarmVisit: null,
+        selectedResort: null
     };
     
     // Reset UI
