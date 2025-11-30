@@ -17,7 +17,9 @@ const PRICES = {
         conservation: 150
     },
     discounts: {
-        STUDENT20: 0.20  // 20% discount for groups of 10+ people
+        STUDENT10: 0.10,  // 10% discount for students
+        PWD: 0.10,        // 10% discount for PWD
+        SENIOR: 0.10      // 10% discount for seniors
     }
 };
 
@@ -123,20 +125,43 @@ function initializeEventListeners() {
 
     // Number of people change
     const numberOfPeopleSelect = document.getElementById('numberOfPeople');
+    const customPeopleInput = document.getElementById('customPeopleInput');
+    const customPeopleCount = document.getElementById('customPeopleCount');
+    
     numberOfPeopleSelect.addEventListener('change', (e) => {
         let value = e.target.value;
         
-        // Handle range values
-        if (value === '6-10') {
-            currentBooking.numberOfPeople = 6;
-        } else if (value === '10+') {
-            currentBooking.numberOfPeople = 10;
+        // Show/hide custom input field
+        if (value === 'custom') {
+            customPeopleInput.style.display = 'block';
+            customPeopleCount.focus();
+            // Reset to 1 until user enters a value
+            currentBooking.numberOfPeople = 1;
         } else {
-            currentBooking.numberOfPeople = parseInt(value) || 1;
+            customPeopleInput.style.display = 'none';
+            customPeopleCount.value = '';
+            
+            // Handle range values
+            if (value === '6-9') {
+                currentBooking.numberOfPeople = 6;
+            } else {
+                currentBooking.numberOfPeople = parseInt(value) || 1;
+            }
         }
         
         updatePriceSummary();
     });
+    
+    // Custom people count input
+    if (customPeopleCount) {
+        customPeopleCount.addEventListener('input', (e) => {
+            const count = parseInt(e.target.value) || 0;
+            if (count > 0) {
+                currentBooking.numberOfPeople = count;
+                updatePriceSummary();
+            }
+        });
+    }
 
     // Activity type selection (both regular and modal versions)
     const activityCards = document.querySelectorAll('.activity-type-card, .activity-card-modal');
@@ -504,11 +529,20 @@ function calculateSubtotal() {
 }
 
 function calculateDiscount(subtotal) {
+    let discount = 0;
+    
+    // Automatic 15% discount for groups of 10 or more
+    if (currentBooking.numberOfPeople >= 10) {
+        discount += subtotal * 0.15;
+    }
+    
+    // Apply discount code if provided
     if (currentBooking.discountCode && PRICES.discounts[currentBooking.discountCode]) {
         const discountRate = PRICES.discounts[currentBooking.discountCode];
-        return subtotal * discountRate;
+        discount += subtotal * discountRate;
     }
-    return 0;
+    
+    return discount;
 }
 
 function calculateTotal() {
@@ -603,7 +637,36 @@ function updatePriceSummary() {
         // Update discount
         if (discount > 0) {
             document.getElementById('discountLine').style.display = 'flex';
-            document.getElementById('discountAmount').textContent = `-₱${discount.toLocaleString()}`;
+            let discountText = `-₱${discount.toLocaleString()}`;
+            
+            // Calculate individual discount amounts
+            const groupDiscount = currentBooking.numberOfPeople >= 10 ? subtotal * 0.15 : 0;
+            const codeDiscount = currentBooking.discountCode && PRICES.discounts[currentBooking.discountCode] 
+                ? subtotal * PRICES.discounts[currentBooking.discountCode] 
+                : 0;
+            
+            // Build discount label
+            let discountLabels = [];
+            
+            if (groupDiscount > 0) {
+                discountLabels.push('15% Group');
+            }
+            
+            if (codeDiscount > 0) {
+                const discountNames = {
+                    STUDENT10: 'Student',
+                    PWD: 'PWD',
+                    SENIOR: 'Senior'
+                };
+                const discountName = discountNames[currentBooking.discountCode] || currentBooking.discountCode;
+                discountLabels.push(`${discountName} Code`);
+            }
+            
+            if (discountLabels.length > 0) {
+                discountText += ` (${discountLabels.join(' + ')})`;
+            }
+            
+            document.getElementById('discountAmount').textContent = discountText;
         } else {
             document.getElementById('discountLine').style.display = 'none';
         }
@@ -629,21 +692,20 @@ function applyDiscountCode() {
         return;
     }
     
-    // Check for student discount eligibility
-    if (code === 'STUDENT20') {
-        const numberOfPeopleSelect = document.getElementById('numberOfPeople');
-        const selectedValue = numberOfPeopleSelect.value;
-        
-        if (selectedValue !== '10+' && selectedValue !== '6-10' && parseInt(selectedValue) < 10) {
-            showNotification('Student discount requires a group of 10+ people', 'error');
-            return;
-        }
-    }
-    
+    // Discount codes work for any number of people
     if (PRICES.discounts[code]) {
         currentBooking.discountCode = code;
         document.getElementById('discountApplied').style.display = 'flex';
-        showNotification(`Discount code "${code}" applied successfully!`, 'success');
+        
+        // Get discount name for notification
+        const discountNames = {
+            STUDENT10: 'Student',
+            PWD: 'PWD',
+            SENIOR: 'Senior'
+        };
+        const discountName = discountNames[code] || code;
+        
+        showNotification(`${discountName} discount code "${code}" applied successfully!`, 'success');
         updatePriceSummary();
     } else {
         showNotification('Invalid discount code', 'error');
@@ -660,12 +722,25 @@ function handleFormSubmit(e) {
     e.preventDefault();
     
     const formData = new FormData(e.target);
+    
+    // Get number of people - use custom input if "custom" is selected
+    let numberOfPeople = formData.get('numberOfPeople');
+    if (numberOfPeople === 'custom') {
+        const customCount = document.getElementById('customPeopleCount').value;
+        if (!customCount || parseInt(customCount) < 1) {
+            showNotification('Please enter a valid number of people', 'error');
+            document.getElementById('customPeopleCount').focus();
+            return;
+        }
+        numberOfPeople = parseInt(customCount);
+    }
+    
     const bookingData = {
         personalInfo: {
             fullName: formData.get('fullName'),
             email: formData.get('email'),
             phone: formData.get('phone'),
-            numberOfPeople: formData.get('numberOfPeople')
+            numberOfPeople: numberOfPeople
         },
         tourDates: {
             startDate: formData.get('tourStartDate'),
@@ -1204,6 +1279,7 @@ function getPaymentMethodName(method) {
     const names = {
         card: 'Credit/Debit Card',
         paypal: 'PayPal',
+        gcash: 'GCash',
         bank: 'Bank Transfer',
         cash: 'Cash on Arrival'
     };

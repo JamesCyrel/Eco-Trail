@@ -139,6 +139,44 @@
     margin: 0;
 }
 
+/* Custom People Input Field */
+#customPeopleInput {
+    background: rgba(45, 122, 79, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(45, 122, 79, 0.2);
+    margin-top: 1rem;
+    animation: fadeIn 0.3s ease;
+}
+
+#customPeopleInput input {
+    padding: 0.75rem;
+    border: 2px solid rgba(45, 122, 79, 0.3);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+#customPeopleInput input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(45, 122, 79, 0.1);
+}
+
+#customPeopleInput small {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    color: var(--text-light);
+}
+
+#customPeopleInput small i {
+    color: var(--accent-color);
+}
+
 .package-selection-modal {
     display: grid;
     grid-template-columns: 1fr 1fr;

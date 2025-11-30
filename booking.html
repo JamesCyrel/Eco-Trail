@@ -95,9 +95,16 @@
                                             <option value="3">3 people</option>
                                             <option value="4">4 people</option>
                                             <option value="5">5 people</option>
-                                            <option value="6-10">6-10 people</option>
-                                            <option value="10+">10+ people</option>
+                                            <option value="6-9">6-9 people</option>
+                                            <option value="custom">(10 or more people)</option>
                                         </select>
+                                        <div id="customPeopleInput" style="display: none; margin-top: 1rem;">
+                                            <label for="customPeopleCount" style="font-size: 0.9rem; color: var(--text-light);">Enter number of people:</label>
+                                            <input type="number" id="customPeopleCount" name="customPeopleCount" min="1" placeholder="Enter number of people" style="width: 100%; margin-top: 0.5rem;">
+                                            <small style="color: var(--text-light); font-size: 0.85rem; margin-top: 0.3rem; display: block;">
+                                                <i class="fas fa-info-circle"></i> Groups of 10 or more automatically receive a 15% discount!
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -538,6 +545,12 @@
                                         <span>PayPal</span>
                                         <p style="font-size: 0.8rem; color: var(--text-light); margin-top: 0.3rem;">Pay securely with PayPal</p>
                                     </label>
+                                    <label class="payment-method-modal" data-method="gcash">
+                                        <input type="radio" name="paymentMethod" value="gcash">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <span>GCash</span>
+                                        <p style="font-size: 0.8rem; color: var(--text-light); margin-top: 0.3rem;">Pay via GCash mobile wallet</p>
+                                    </label>
                                     <label class="payment-method-modal" data-method="bank">
                                         <input type="radio" name="paymentMethod" value="bank">
                                         <i class="fas fa-university"></i>
@@ -596,9 +609,11 @@
                         
                         <div class="discount-code-section">
                             <label style="font-size: 0.9rem; font-weight: 600;">Discount Code</label>
-                            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin: 0.5rem 0;">Student or Educational Discounts: Use promo code <strong>STUDENT20</strong> for a 20% discount on group bookings (10+ people).</p>
+                            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin: 0.5rem 0;">
+                                Available discount codes: <strong>STUDENT10</strong> (10% for students), <strong>PWD</strong> (10% for PWD), <strong>SENIOR</strong> (10% for seniors). Valid for any number of people.
+                            </p>
                             <div class="discount-input-group">
-                                <input type="text" id="discountCode" placeholder="Enter code (e.g., STUDENT20)">
+                                <input type="text" id="discountCode" placeholder="Enter code (e.g., STUDENT10)">
                                 <button type="button" id="applyDiscount">Apply</button>
                             </div>
                             <div id="discountApplied" class="discount-applied" style="display: none;">
